@@ -2,18 +2,18 @@
 //error_reporting(E_ALL);
 class cnn {
     private $_hostname = "localhost";
-    private $_username = "root";
-    private $_password = "";
-    protected $_database = "intercambiosqualtop";
+    private $_username = "wwwbuhor_root";
+    private $_password = "F?w$;ktCC0V#";
+    protected $_database = "wwwbuhor_buhoregalos";
     protected $_cnn = "";
 
     public function __construct() {
         try{
                 if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "127.0.0.1") {
+                    $this->_username = "root";
                     $this->_password = "";
-                } else {
-                    $this->_password = "Mysql123!!!";
-                }
+                    $this->_database = "buhoregalos";
+                } 
                 $this->_cnn = new mysqli($this->_hostname, $this->_username, $this->_password, $this->_database);
                 $this->_cnn->query("SET NAMES 'utf8'");
         }catch (Exception $e) {

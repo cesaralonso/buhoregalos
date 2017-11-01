@@ -29,8 +29,7 @@ SetOutputFilter DEFLATE
 <IfModule mod_rewrite.c>
 RewriteEngine on
 #RewriteBase /intercambioschidos/proyecto/
-#RewriteBase /
-RewriteBase /intercambiosqualtop/proyecto/
+RewriteBase /
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 

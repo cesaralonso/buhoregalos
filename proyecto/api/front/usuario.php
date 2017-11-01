@@ -43,7 +43,7 @@ switch($action){
 
       $usuarios = $DaoUsuario->getParticipandoByIdequipo($_POST['idequipo']);
       foreach ($usuarios as $usuario) {
-        $mensaje = "<h2>TU REGALO SECRETO</h2><p>Estimado compañero ".$usuario->nombres.", </p><p>Te invitamos a participar en la dinámica del intercambio desde una plataforma web diseñada especialmente para poder disfrutar de un intercambio mas sencillo, mejor organizado y divertido.</p><p>Accediendo a la siguiente dirección <a href='http://www.turegalosecreto.com/acceso'>Tu regalo secreto</a> estarás aceptando participar, por favor accesa con el usuario: <strong>".$usuario->email."</strong> y el password: <strong>".$usuario->password."</strong></p><p>¡Esperamos disfrutes la experiencia!.</p>";
+        $mensaje = "<h2>Búho Regalos</h2><p>Estimado compañero ".$usuario->nombres.", </p><p>Te invitamos a participar en la dinámica del intercambio desde una plataforma web diseñada especialmente para poder disfrutar de un intercambio mas sencillo, mejor organizado y divertido.</p><p>Accediendo a la siguiente dirección <a href='http://www.buhoregalos.com/acceso'>Búho Regalos</a> estarás aceptando participar, por favor accesa con el usuario: <strong>".$usuario->email."</strong> y el password: <strong>".$usuario->password."</strong></p><p>¡Esperamos disfrutes la experiencia!.</p>";
 
           $estatus_envio = Core::mail($usuario->email, "Participa en un intercambio", $mensaje, $mensaje);
       }
@@ -81,7 +81,7 @@ switch($action){
 
           $articulos = $DaoArticulo->getAllByUserId($organizado['recibe_id']);
 
-          $mensaje = "<h2>Tu regalo secreto</h2><p>Estimad@ compañer@ $organizados_da_nombre</p>
+          $mensaje = "<h2>Búho Regalos</h2><p>Estimad@ compañer@ $organizados_da_nombre</p>
           <p>El tiempo del sorteo del intercambio ha finalizado y estos fueron los resultados: </p>";
 
           if(count($articulos)>0){
@@ -189,7 +189,7 @@ switch($action){
 
       $usuario = $DaoUsuario->getDataById($_POST['idusuario']);
 
-      $mensaje = "<h2>Tu regalo secreto</h2><p>Estimado compañero ".$usuario->nombres.", </p><p>Te invitamos a participar en la dinámica del intercambio desde una plataforma web diseñada especialmente para poder disfrutar de un intercambio mas sencillo, mejor organizado y divertido.</p><p>Accediendo a la siguiente dirección <a href='http://www.turegalosecreto.com/acceso'>Tu regalo secreto</a> estarás aceptando participar, por favor accesa con el usuario: <strong>".$usuario->email."</strong> y el password: <strong>".$usuario->password."</strong></p><p>¡Esperamos disfrutes la experiencia!.</p>";
+      $mensaje = "<h2>Búho Regalos</h2><p>Estimado compañero ".$usuario->nombres.", </p><p>Te invitamos a participar en la dinámica del intercambio desde una plataforma web diseñada especialmente para poder disfrutar de un intercambio mas sencillo, mejor organizado y divertido.</p><p>Accediendo a la siguiente dirección <a href='http://www.buhoregalos.com/acceso'>Búho Regalos</a> estarás aceptando participar, por favor accesa con el usuario: <strong>".$usuario->email."</strong> y el password: <strong>".$usuario->password."</strong></p><p>¡Esperamos disfrutes la experiencia!.</p>";
 
       $estatus_envio = Core::mail($usuario->email, "Participa en un intercambio", $mensaje, $mensaje);
 

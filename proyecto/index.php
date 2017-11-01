@@ -12,12 +12,12 @@
 <html lang="es">
 
 <head>
-    <title>BUHO REGALOS</title>
+    <title>BÚHO REGALOS</title>
     <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/x-icon" href="<?=APP_PATH?>images/qtp-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?=APP_PATH?>images/buho_ico.png">
     <!-- Cargando fuentes -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic' rel='stylesheet' type='text/css'>
     <!-- Cargando iconos -->
@@ -41,8 +41,8 @@
         <header class="encabezado navbar-fixed-top" role="banner" id="encabezado">
             <div class="container">
                 <a href="<?=APP_PATH?>" class="logo text-white" style="text-decoration:none">
-                    <span class="hidden-md-up">BUHO REGALOS</span>
-                    <span class="hidden-md-down">BUHO REGALOS</span>
+                    <span class="hidden-md-up">BÚHO REGALOS</span>
+                    <span class="hidden-md-down">BÚHO REGALOS</span>
                 </a>
                 <!--
                 <button type="button" class="boton-menu" data-toggle="collapse" data-target="#bloque-buscar" aria-expanded="false">
@@ -95,7 +95,7 @@
 
     <footer class="piedepagina py-1" role="contentinfo">
         <div class="container">
-            <p>2017 © BUHO REGALOS  Todos los derechos reservados</p>
+            <p>2017 © BÚHO REGALOS  Todos los derechos reservados</p>
             <!--
             <ul class="redes-sociales">
                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"> </i>  </a></li>

@@ -144,12 +144,12 @@ class Core {
 		$mail = new PHPMailer();
 		$mail->CharSet = 'UTF-8';
 		$mail->isSMTP();                                      // Set mailer to use SMTP
-		$mail->Host = 'mail.syesoftware.com';  // Specify main and backup SMTP servers
+		$mail->Host = 'fiero.websitewelcome.com';  // Specify main and backup SMTP servers
 		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = 'no-reply@syesoftware.com';                 // SMTP username
-		$mail->Password = 'Syesoftware2015';                           // SMTP password
+		$mail->Username = 'no-reply@buhoregalos.com';                 // SMTP username
+		$mail->Password = 'F?w$;ktCC0V#';                           // SMTP password
 		$mail->Port = 26;                                    // TCP port to connect to
-		$mail->setFrom('no-reply@syesoftware.com', 'Intercambios Qualtop Group');
+		$mail->setFrom('no-reply@buhoregalos.com', 'Buho Regalos');
 		$mail->addAddress($emailto);               // Name is optional
 		$mail->isHTML(true);                                  // Set email format to HTML
 		$mail->Subject = $subject;
