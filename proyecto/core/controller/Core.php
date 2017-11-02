@@ -149,7 +149,7 @@ class Core {
 		$mail->Username = 'no-reply@buhoregalos.com';                 // SMTP username
 		$mail->Password = 'F?w$;ktCC0V#';                           // SMTP password
 		$mail->Port = 26;                                    // TCP port to connect to
-		$mail->setFrom('no-reply@buhoregalos.com', 'Buho Regalos');
+		$mail->setFrom('no-reply@buhoregalos.com', 'Búho Regalos');
 		$mail->addAddress($emailto);               // Name is optional
 		$mail->isHTML(true);                                  // Set email format to HTML
 		$mail->Subject = $subject;
