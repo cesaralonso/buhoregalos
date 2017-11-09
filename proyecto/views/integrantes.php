@@ -62,10 +62,9 @@ if(!$islogged && !$isadmin){
             <div class="row">
                 <article class="col-md-8" >
                     <div id="integrantes"></div>
-                    <div class="row">
+                    <div class="row p-3">
                         <div class="col-md-8 offset-md-4" style="text-align: center;">
                             <button type="button" class="btn btn-info" id="btnEnviaInvitaciones"><i class="fa fa-envelope"></i> Enviar invitación masiva <span class="small">(a no participantes)</span></button>
-                            <button type="button" class="btn btn-warning" id="btnFinalizaSorteo"><i class="fa fa-star"></i> Finalizar Sorteo <span class="small">(para no organizados)</span></button>
                         </div>
                     </div>
                 </article>
@@ -495,6 +494,7 @@ if(!$islogged && !$isadmin){
 
             });
 
+
             // Llena lista de integrantes
             var usuario = new Usuario();
             var params = {
@@ -515,21 +515,6 @@ if(!$islogged && !$isadmin){
                    '_base_url'   : '../api/front/usuario.php',
                    '_idequipo'   : '<?=$_GET['id']?>',
                    '_method'     : 'emailToAllByIdequipo'
-                }
-                usuario._set(params);
-
-            });
-
-            $('#btnFinalizaSorteo').on('click', function (event) {
-
-                event.preventDefault();
-
-                // Envia a lista de integrantes
-                var usuario = new Usuario();
-                var params = {
-                   '_base_url'   : '../api/front/usuario.php',
-                   '_idequipo'   : '<?=$_GET['id']?>',
-                   '_method'     : 'finishAndEmailToAllByIdequipo'
                 }
                 usuario._set(params);
 

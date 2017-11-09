@@ -7,20 +7,20 @@ SetOutputFilter DEFLATE
 
 # 480 weeks
 <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|mp4)$">
-#Header set Cache-Control "max-age=290304000, public"
+Header set Cache-Control "max-age=290304000, public"
 </FilesMatch>
 
 # 2 DAYS
 <FilesMatch "\.(xml|txt)$">
-#Header set Cache-Control "max-age=172800, public, must-revalidate"
+Header set Cache-Control "max-age=172800, public, must-revalidate"
 </FilesMatch>
 
 # 2 HOURS
 <FilesMatch "\.(html|htm)$">
-#Header set Cache-Control "max-age=7200, must-revalidate"
+Header set Cache-Control "max-age=7200, must-revalidate"
 </FilesMatch>
 
-#ErrorDocument 404 http://www.
+#ErrorDocument 404 http://www.buhoregalos.com?error=404
 
 
 #AddDefaultCharset ISO-8859-1
@@ -28,8 +28,8 @@ SetOutputFilter DEFLATE
 
 <IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteBase /buhoregalos/proyecto/
-#RewriteBase /
+#RewriteBase /buhoregalos/proyecto/
+RewriteBase /
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
