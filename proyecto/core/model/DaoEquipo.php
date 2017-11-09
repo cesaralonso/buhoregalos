@@ -41,25 +41,25 @@ class DaoEquipo extends base{
     }
 
     public function getAll(){
-        $query = "SELECT * FROM ".$this->tableName." ORDER BY nombre";
+        $query = "SELECT * FROM ".$this->tableName." ORDER BY nombre WHERE baja = 0 ";
         $resultSet = $this->advancedQuery($query);
         return $resultSet;
     }
 
     public function getAllByUserId($id){
-        $query="SELECT idequipo, e.nombre, e.code FROM ".$this->tableName." as e INNER JOIN intercambio as i ON i.idintercambio = e.intercambio_idintercambio WHERE i.usuario_idusuario = $id";
+        $query="SELECT idequipo, e.nombre, e.code FROM ".$this->tableName." as e INNER JOIN intercambio as i ON i.idintercambio = e.intercambio_idintercambio WHERE e.baja = 0 AND i.usuario_idusuario = $id";
         $resultSet = $this->advancedQuery($query);
         return $resultSet;
     }
 
     public function getAllMemberByUserId($id){
-        $query="SELECT idequipo, e.nombre, e.code FROM ".$this->tableName." as e INNER JOIN usuario_has_equipo as ue ON ue.equipo_idequipo = e.idequipo WHERE ue.usuario_idusuario = $id";
+        $query="SELECT idequipo, e.nombre, e.code FROM ".$this->tableName." as e INNER JOIN usuario_has_equipo as ue ON ue.equipo_idequipo = e.idequipo WHERE  e.baja = 0 AND ue.usuario_idusuario = $id";
         $resultSet = $this->advancedQuery($query);
         return $resultSet;
     }
 
-    public function delete($Id){
-        $query = sprintf("DELETE FROM ".$this->tableName." WHERE idequipo=".$Id);
+    public function delete(Equipo $x){
+        $query = sprintf("UPDATE ".$this->tableName." SET baja = 1 WHERE idequipo = ".$x->getIdequipo());
         $Result1=$this->_cnn->query($query);
         if(!$Result1) {
               throw new Exception("Error al eliminar: (" . $this->_cnn->errno . ") " . $this->_cnn->error);

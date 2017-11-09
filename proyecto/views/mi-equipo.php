@@ -31,7 +31,7 @@ if(!$islogged && !$isadmin){
                     
                 </article>
                 <aside class="col-md-4 hidden-md-down">
-                    <img src="<?=APP_PATH?>images/buho.png" alt="Nosotros">
+                    <img src="<?=APP_PATH?>assets/images/buho.png" alt="Nosotros">
                 </aside>
 
             </div>
@@ -76,13 +76,6 @@ if(!$islogged && !$isadmin){
                         <input class="form-control"  type="number" step="10" i id="precio_max" name="precio_max" placeholder="Ingrese su precio máximo" data-toggle="tooltip" data-placement="top" title="Ingrese su precio máximo" max="20000"  value="{{precio_max}}">
                         <span class="input-group-addon">.00 M.N.</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="code" class="col-md-4 col-form-label">Código</label>
-                <div class="col-md-8">
-                    <input class="form-control" type="text" id="code" name="code" placeholder="Ingrese un código para compartir" data-toggle="tooltip" data-placement="top" title="Ingrese  un código para compartir" value="{{code}}">
                 </div>
             </div>
 

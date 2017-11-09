@@ -27,8 +27,6 @@ class base extends cnn {
         return $theValue;
     }
 
-
-
     public function hashPassword($password) {
         $salt = "mdsksprwuhej6skhs0b08ojx6";
         //encrypt the password, rotate characters by length of original password
@@ -179,12 +177,12 @@ class base extends cnn {
             if(!$consulta){
               throw   new  Exception("Error al consultar: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
             }else{
-                $row_consulta= $consulta->fetch_assoc();
-                $totalRows_consulta= $consulta->num_rows;
+                $row_consulta = $consulta->fetch_assoc();
+                $totalRows_consulta = $consulta->num_rows;
                         if($totalRows_consulta>0){
-                               do{
-                                  array_push($resp, $row_consulta);
-                           }while($row_consulta= $consulta->fetch_assoc());
+                            do{
+                                 array_push($resp, $row_consulta);
+                            } while($row_consulta = $consulta->fetch_assoc());
                         }
             }
             return $resp;
@@ -276,8 +274,8 @@ class base extends cnn {
       return false;
     }
     public $response = array(
-      'msg' 		=> null,		// Algun mensaje específico.
-      'status' 	=> true,
+      'msg'         => null,		// Algun mensaje específico.
+      'status' 	    => true,
       'class'		=> null			// success, fail.
     );
 }

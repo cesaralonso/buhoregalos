@@ -14,14 +14,11 @@
             <div class="row">
                 <div class="col-md-8 col-xl-9 wow bounceIn" data-wow-delay=".3s">
                     <h2 class="h3 text-xs-center text-md-left font-weight-bold">Organiza un intercambio perfecto</h2>
-                    <!--<p>Todos en un equipo se conocen, todos saben o pueden intuir los gustos de los demas, esta es una forma en que podemos asegurar
-                        que un individuo puede obtener el artículo que el desea sin haberle preguntado cual era este, al mismo tiempo el sentirá que es algo especial pues
-                        fue lo que la mayoria creyó que se identificaría o le gustaría a el.</p>-->
-                        <p>Deseamos que el regalo que recibas de intercambio este año, sea el que nunca creiste recibir.</p>
+                        <p>Deseamos que el regalo que recibas de intercambio este año sea el que siempre esperaste recibir.</p>
                         <p>Participa votando por el regalo perfecto para ti y para cada integrante de tu equipo de intercambio.</p>
                 </div>
                 <div class="col-md-4 col-xl-3 wow bounceIn" data-wow-delay=".6s">
-                    <img src="<?=APP_PATH?>images/buho.png" alt="La agencia">
+                    <img src="<?=APP_PATH?>assets/images/buho.png" alt="La agencia">
                 </div>
             </div>
         </div>

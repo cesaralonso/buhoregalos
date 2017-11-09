@@ -28,8 +28,6 @@ Equipo.prototype._getByUserId = function(){
 	})
 };
 
-
-
 Equipo.prototype._getMemberAllForMe = function(){
 	var data = {};
 	var self = this;
@@ -47,7 +45,6 @@ Equipo.prototype._getMemberAllForMe = function(){
 		console.log( _err );
 	})
 };
-
 
 Equipo.prototype._getAllForMe = function(){
 	var data = {};
@@ -67,7 +64,6 @@ Equipo.prototype._getAllForMe = function(){
 	})
 };
 
-
 Equipo.prototype._getDataById = function(){
 	var data = {};
 	var self = this;
@@ -85,7 +81,6 @@ Equipo.prototype._getDataById = function(){
 		console.log( _err );
 	})
 };
-
 
 Equipo.prototype._byId = function(){
 	var data = {};
@@ -107,7 +102,6 @@ Equipo.prototype._byId = function(){
 	})
 };
 
-
 Equipo.prototype._getallForSelect = function(){
 	var data = {};
 	var self = this;
@@ -125,9 +119,6 @@ Equipo.prototype._getallForSelect = function(){
 		console.log( _err );
 	})
 };
-
-
-
 
 Equipo.prototype._update = function(){
 	var data = {};
@@ -157,8 +148,6 @@ Equipo.prototype._update = function(){
 		console.log( _err );
 	})
 };
-
-
 
 Equipo.prototype._save = function(){
 	var data = {};
@@ -190,6 +179,35 @@ Equipo.prototype._save = function(){
 	})
 };
 
+/*
+ * 	DELETE EQUIPO
+ *	@params : {informacion equipo}
+ *	=======================================
+ */
+Equipo.prototype._delete = function(){
+	var self = this;
+	$.ajax({
+		url 	: (self.equipo.base_url!==null) ? self.equipo.base_url : self.base_url,
+		method 	: 'POST',
+		async 	: false,
+		data 	: self.equipo
+	})
+	.done(function( _res ){
+
+		res = JSON.parse(_res);
+		setFlash(res.msg, res.class);
+
+		if( res.status ){
+			self.equipo.method = 'allForMe';
+			self._getAllForMe();
+		} else {
+		}
+
+	})
+	.fail(function( _err ){
+		console.log( _err );
+	})
+};
 
 
 /*
@@ -237,7 +255,6 @@ Equipo.prototype._set = function( _data ){
 	{
 		this._getByUserId();
 	}
-
 	else if( this.equipo.method === 'save' )
 	{
 		this._save();

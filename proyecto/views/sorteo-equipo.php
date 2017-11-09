@@ -108,7 +108,7 @@ if(!$islogged){
                         </div>
 
                         <div class="col-lg-4 hidden-md-down">
-                            <img src="<?=APP_PATH?>images/buho.png" alt="" width="200" class="img-fluid m-x-auto">
+                            <img src="<?=APP_PATH?>assets/images/buho.png" alt="" width="200" class="img-fluid m-x-auto">
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,6 @@ if(!$islogged){
             </div>
         </div>
     </div>
-
 
 
     <!-- Modal 2  -->
@@ -148,7 +147,6 @@ if(!$islogged){
             </div>
         </div>
     </div>
-
 
 
     <!-- Modal 1  -->
@@ -198,8 +196,6 @@ if(!$islogged){
             </div>
         </div>
     </div>
-
-
 
     <script id="articulo-select-template" type="x-text/handlebars">
         <select class="form-control" id="idarticulo" name="idarticulo" data-toggle="tooltip" data-placement="top" title="Elige un articulo">
@@ -254,11 +250,9 @@ if(!$islogged){
 
           </tbody>
         </table>
-        </form>
+      </form>
 
     </script>
-
-
 
     <script>
         $(function(){
@@ -274,7 +268,6 @@ if(!$islogged){
                     return false;
                 }
             });
-
 
             $('#btnGuardarSeleccion').on('click', function(event) {
 
@@ -294,7 +287,6 @@ if(!$islogged){
                 setFlash("Tus sugerencias de regalo han sido guardadas", "success");
 
             });
-
 
             $('#listaArticulo').on('shown.bs.modal', function(event) {
 
@@ -332,9 +324,7 @@ if(!$islogged){
                     }, 1500);
 
                 });
-
-            })
-
+            });
 
             $('#listaArticulo').on('show.bs.modal', function(event) {
 
@@ -351,7 +341,7 @@ if(!$islogged){
                 modal.find('.modal-body input#articulo_precio_min').val(usuario_equipo_precio_min)
                 modal.find('.modal-body input#articulo_precio_max').val(usuario_equipo_precio_max)
 
-            })
+            });
 
             // Elimina articulo con confirmacion
             $('#eliminaArticulo').on('shown.bs.modal', function (event) {
@@ -377,8 +367,7 @@ if(!$islogged){
                     }, 750);
 
                 });
-            })
-
+            });
 
             // Elimina usuario con confirmacion
             $('#eliminaArticulo').on('show.bs.modal', function (event) {
@@ -392,9 +381,7 @@ if(!$islogged){
                 modal.find('.modal-title').text("Eliminar " + articulo_nombre)
                 modal.find('.modal-body input#delete_idusuario').val(usuario_idusuario)
                 modal.find('.modal-body input#delete_idarticulo').val(articulo_idarticulo)
-
-            })
-
+            });
 
             $('#usuarioArticulo').on('shown.bs.modal', function(event) {
 
@@ -424,8 +411,7 @@ if(!$islogged){
                     }, 1500);
 
                 });
-
-            })
+            });
 
             $('#usuarioArticulo').on('show.bs.modal', function(event) {
 
@@ -443,7 +429,7 @@ if(!$islogged){
                 modal.find('.modal-title').text("Sugerir regalo para " + usuario_nombres + " con rango de precios de $" + usuario_equipo_precio_min + " a $" + usuario_equipo_precio_max)
                 modal.find('.modal-body input#idusuario').val(usuario_idusuario)
 
-            })
+            });
 
             // Obtener idequipo con mi sesion
             var equipo = new Equipo();
@@ -453,7 +439,6 @@ if(!$islogged){
                 '_method'      : 'getDataById'
             };
             equipo._set(params);
-
 
             // Llena lista de integrantes
             var usuario = new Usuario();

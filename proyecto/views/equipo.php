@@ -11,14 +11,12 @@ if(!$islogged && !$isadmin){
                 <p class="wow bounceIn" data-wow-delay=".3s">Crea tu equipo.</p>
             </div>
         </div>
-
     </section>
     <section class="ruta py-1">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-xs-right">
                     <a href="<?=APP_PATH?>">Inicio</a> » Equipo
-
                 </div>
             </div>
         </div>
@@ -63,12 +61,14 @@ if(!$islogged && !$isadmin){
                             <div class="col-md-8" id="intercambio-select">
                             </div>
                         </div>
+                        <!--
                         <div class="form-group row">
                             <label for="code" class="col-md-4 col-form-label">Código</label>
                             <div class="col-md-8">
                                 <input class="form-control" type="text" id="code" name="code" placeholder="Ingrese un código para compartir" data-toggle="tooltip" data-placement="top" title="Ingrese  un código para compartir">
                             </div>
                         </div>
+                        -->
                         <div class="form-group row">
                             <label for="articulos_max" class="col-md-4 col-form-label">Máximo de articulos permitidos a sugerir por usuario, por default es 5</label>
                             <div class="col-md-8">
@@ -83,7 +83,6 @@ if(!$islogged && !$isadmin){
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -91,15 +90,13 @@ if(!$islogged && !$isadmin){
                             </div>
                         </div>
                     </form>
-
                 </article>
                 <aside class="col-md-4 hidden-md-down">
-                    <img src="<?=APP_PATH?>images/buho.png" alt="Nosotros">
+                    <img src="<?=APP_PATH?>assets/images/buho.png" alt="Nosotros">
                 </aside>
             </div>
         </div>
     </main>
-
 
 
     <!-- Modal 1  -->
@@ -235,7 +232,6 @@ if(!$islogged && !$isadmin){
                     '_method'                       : 'save'
                 };
                 equipo._set(data);
-    
             });
 
             $('#usuarioArticulo').on('shown.bs.modal', function(event) {
@@ -264,7 +260,6 @@ if(!$islogged && !$isadmin){
                     }, 1500);
         
                 });
-
             })
 
             $('#usuarioArticulo').on('show.bs.modal', function(event) {
@@ -276,8 +271,6 @@ if(!$islogged && !$isadmin){
                 var modal = $(this)
 
                 modal.find('.modal-title').text("Sugerir regalo para cada miembro del equipo con rango de precios de $" + usuario_equipo_precio_min + " a $" + usuario_equipo_precio_max)
-
-
             })
 
             $('#btnAddArticles').on('click', function(e) {

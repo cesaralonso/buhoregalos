@@ -12,26 +12,28 @@
 <html lang="es">
 
 <head>
-    <title>BÚHO REGALOS</title>
+    <title>BÚHO INTERCAMBIOS</title>
     <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Aplicación para facilitar la organización de intercambios navideños empresariales">
+    <meta name="author" content="César Alonso Magaña Gavilanes | Software Insights">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/x-icon" href="<?=APP_PATH?>images/buho_ico.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?=APP_PATH?>assets/images/buho_ico.png">
     <!-- Cargando fuentes -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic' rel='stylesheet' type='text/css'>
     <!-- Cargando iconos -->
-    <link href='<?=APP_PATH?>css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='<?=APP_PATH?>assets/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <!-- Carga de Galeria de imágenes -->
-    <link rel="stylesheet" href="<?=APP_PATH?>css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?=APP_PATH?>assets/css/owl.carousel.min.css">
     <!-- Carga de archivos css -->
-    <link rel="stylesheet" href="<?=APP_PATH?>css/bootstrap.css">
-    <link rel="stylesheet" href="<?=APP_PATH?>css/animate.min.css">
-    <link rel="stylesheet" href="<?=APP_PATH?>css/estilos.css">
-    <link rel="stylesheet" type="text/css" href="<?=APP_PATH?>res/toast.css">
+    <link rel="stylesheet" href="<?=APP_PATH?>assets/css/bootstrap.css">
+    <link rel="stylesheet" href="<?=APP_PATH?>assets/css/animate.min.css">
+    <link rel="stylesheet" href="<?=APP_PATH?>assets/css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="<?=APP_PATH?>assets/css/toast.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
-    <script src="<?=APP_PATH?>js/jquery.min.js"></script>
+    <script src="<?=APP_PATH?>assets/js/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 </head>
 
@@ -40,9 +42,14 @@
 
         <header class="encabezado navbar-fixed-top" role="banner" id="encabezado">
             <div class="container">
-                <a href="<?=APP_PATH?>" class="logo text-white" style="text-decoration:none">
-                    <span class="hidden-md-up">BÚHO REGALOS</span>
-                    <span class="hidden-md-down">BÚHO REGALOS</span>
+                <a href="<?=APP_PATH?>" class="text-white" style="text-decoration:none">
+                    <span class="hidden-md-up">
+                        BÚHO INTERCAMBIOS
+                    </span>
+                    <span class="hidden-md-down">
+                        <img src="<?=APP_PATH?>assets/images/buho_ico.png" height="52" alt="BÚHO INTERCAMBIOS">
+                        BÚHO INTERCAMBIOS
+                    </span>
                 </a>
                 <!--
                 <button type="button" class="boton-menu" data-toggle="collapse" data-target="#bloque-buscar" aria-expanded="false">
@@ -73,9 +80,9 @@
                         <?php endif; ?>
 
                         <?php if($islogged && $isleader): ?>
-                        <li <?=(($view === 'intercambio') ? 'class="active"' : '')?>><a href="<?=APP_PATH?>intercambio">Crea tu intercambio</a></li>
+                        <!--<li <?=(($view === 'intercambio') ? 'class="active"' : '')?>><a href="<?=APP_PATH?>intercambio">Crea tu intercambio</a></li>-->
+                        <li <?=(($view === 'mis-intercambios') ? 'class="active"' : '')?>><a href="<?=APP_PATH?>mis-intercambios">Intercambios</a></li>
                         <li <?=(($view === 'mis-equipos') ? 'class="active"' : '')?>><a href="<?=APP_PATH?>mis-equipos">Equipos</a></li>
-                        <!--<li <?=(($view === 'mis-intercambios') ? 'class="active"' : '')?>><a href="<?=APP_PATH?>mis-intercambios">Intercambios</a></li>-->
                         <?php endif; ?>
 
                         <?php if($islogged): ?>
@@ -91,27 +98,24 @@
             </div>
         </header>
 
-    <?php include("vistas/$view.php"); ?>
+    <?php include("views/$view.php"); ?>
 
     <footer class="piedepagina py-1" role="contentinfo">
         <div class="container">
-            <p>2017 © BÚHO REGALOS  Todos los derechos reservados</p>
-            <!--
+            <p>2017 © BÚHO INTERCAMBIOS - Todos los derechos reservados</p>            
             <ul class="redes-sociales">
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"> </i>  </a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> </a></li>
-                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i> </a></li>
+                <li><a href="https://www.facebook.com/Búho-Intercambios-2034332800178704" target="blank"><i class="fa fa-facebook fa-sm" aria-hidden="true"> </i>  </a></li>
             </ul>
-            -->
+            <p>Desarrollado por <a href="http://www.softwareinsights.com.mx" title="Software Insights, Creación, desarrollo y capacitación en desarrollo de software.">Software Insights</a></p>
         </div>
     </footer>
 
     <a data-scroll class="ir-arriba" href="#encabezado"><i class="fa  fa-arrow-circle-up" aria-hidden="true"> </i> </a>
 
     <!-- Carga de archivos  JS -->
-    <script src="<?=APP_PATH?>js/bootstrap.min.js"></script>
-    <script src="<?=APP_PATH?>js/owl.carousel.min.js"></script>
-    <script src="<?=APP_PATH?>res/handlebars/handlebars.js"></script>
+    <script src="<?=APP_PATH?>assets/js/bootstrap.min.js"></script>
+    <script src="<?=APP_PATH?>assets/js/owl.carousel.min.js"></script>
+    <script src="<?=APP_PATH?>assets/js/handlebars/handlebars.js"></script>
     <script type="text/javascript">
         $('.owl-carousel').owlCarousel({
             loop: true,
@@ -139,13 +143,13 @@
         })
 
     </script>
-    <script src="<?=APP_PATH?>js/wow.min.js"></script>
-    <script src="<?=APP_PATH?>js/smooth-scroll.min.js"></script>
-    <script src="<?=APP_PATH?>js/sitio.js"></script>
+    <script src="<?=APP_PATH?>assets/js/wow.min.js"></script>
+    <script src="<?=APP_PATH?>assets/js/smooth-scroll.min.js"></script>
+    <script src="<?=APP_PATH?>assets/js/sitio.js"></script>
 
     <!-- Notificaciones -->
-    <script src="<?=APP_PATH?>res/toast.js"></script>
-    <script src="<?=APP_PATH?>res/html2canvas.js"></script>
+    <script src="<?=APP_PATH?>assets/js/toast.js"></script>
+    <script src="<?=APP_PATH?>assets/js/html2canvas.js"></script>
     <script>
         var opts = {
             "closeButton" : true,

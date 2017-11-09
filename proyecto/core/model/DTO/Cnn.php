@@ -12,7 +12,7 @@ class cnn {
                 if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "127.0.0.1") {
                     $this->_username = "root";
                     $this->_password = "";
-                    $this->_database = "buhoregalos";
+                    $this->_database = "intercambioschidos";
                 } 
                 $this->_cnn = new mysqli($this->_hostname, $this->_username, $this->_password, $this->_database);
                 $this->_cnn->query("SET NAMES 'utf8'");

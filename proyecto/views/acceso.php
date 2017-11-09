@@ -1,13 +1,10 @@
 
         <div class="texto-encabezado text-xs-center">
-
             <div class="container">
-                <h1 class="display-4">Accesa</h1>
-                <p class="wow bounceIn" data-wow-delay=".3s">Accesa como lider o como miembro del equipo.</p>
-                
-
                 <div class="row">
-                    <article class="col-md-6 offset-md-3">
+                    <article class="col-md-6 offset-md-3" style="padding:0 30px 30px 30px; background-color: #064e4e;">
+                        <h1 class="display-4">Accesa</h1>
+                        <p class="wow bounceIn" data-wow-delay=".3s">Accesa como lider o como miembro del equipo.</p>
                            <form id="formAcceso">
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label hidden-sm-down">Email</label>
@@ -31,19 +28,14 @@
                     </article>
                 </div>
             </div>
-            </div>
-
         </div>
-
     </section>
-
 
     <section class="ruta py-1">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-xs-right">
                     <a href="<?=APP_PATH?>">Inicio</a> » Acceso
-
                 </div>
             </div>
         </div>
@@ -51,11 +43,9 @@
     <main class="py-1">
         <div class="container">
             <div class="row">
-
             </div>
         </div>
     </main>
-
 
     <script>
         $(function(){

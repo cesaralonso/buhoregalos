@@ -68,7 +68,7 @@
 
                 </article>
                 <aside class="col-md-4 hidden-md-down">
-                    <img src="<?=APP_PATH?>images/buho.png" alt="Nosotros">
+                    <img src="<?=APP_PATH?>assets/images/buho.png" alt="Nosotros">
                 </aside>
 
             </div>

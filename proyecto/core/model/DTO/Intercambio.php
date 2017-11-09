@@ -44,8 +44,8 @@ class Intercambio{
 
 
 
-    function setIdintercambio($id) {
-        $this->id = $id;
+    function setIdintercambio($idintercambio) {
+        $this->idintercambio = $idintercambio;
     }
 
     function setNombre($nombre) {

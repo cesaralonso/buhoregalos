@@ -56,7 +56,7 @@ if(!$islogged && !$isadmin){
 
                 </article>
                 <aside class="col-md-4 hidden-md-down">
-                    <img src="<?=APP_PATH?>images/buho.png" alt="Nosotros">
+                    <img src="<?=APP_PATH?>assets/images/buho.png" alt="Nosotros">
                 </aside>
             </div>
             <div class="row">
@@ -278,7 +278,7 @@ if(!$islogged && !$isadmin){
                     }, 1500);
 
                 });
-            })
+            });
 
 
             $('#edicionUsuario').on('show.bs.modal', function (event) {
@@ -310,9 +310,9 @@ if(!$islogged && !$isadmin){
                 })
                 .fail(function( _err ){
                     console.log( _err );
-                })
+                });
 
-            })
+            });
 
             // Elimina usuario con confirmacion
             $('#eliminacionUsuario').on('shown.bs.modal', function (event) {
@@ -337,7 +337,7 @@ if(!$islogged && !$isadmin){
                     }, 750);
 
                 });
-            })
+            });
 
 
             // Elimina usuario con confirmacion
@@ -351,15 +351,13 @@ if(!$islogged && !$isadmin){
                 modal.find('.modal-title').text("Eliminar a " + usuario_nombres)
                 modal.find('.modal-body input#delete_idusuario').val(usuario_idusuario)
 
-            })
-
+            });
 
 
             // Invita usuario con confirmacion
             $('#activacionUsuario').on('shown.bs.modal', function (event) {
 
                 var modal = $(this)
-
 
                 $('#btnActivaUsuario').off('click').on('click', function(e){
                     e.preventDefault();
@@ -401,9 +399,7 @@ if(!$islogged && !$isadmin){
                     }, 750);
 
                 });
-
-
-            })
+            });
 
 
             // Invita usuario con confirmacion
@@ -426,7 +422,6 @@ if(!$islogged && !$isadmin){
                     $('#btnActivaUsuario').attr('disabled', true);
                     $('#btnDesactivaUsuario').attr('disabled', false);
                 }
-
             })
 
 
@@ -466,9 +461,7 @@ if(!$islogged && !$isadmin){
 
                 modal.find('.modal-title').text("Enviar invitación a " + usuario_nombres)
                 modal.find('.modal-body input#invita_idusuario').val(usuario_idusuario)
-
             })
-
 
 
             // Obtener idequipo con mi sesion

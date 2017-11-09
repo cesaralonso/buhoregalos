@@ -1,12 +1,11 @@
 <?php
-// Definiciones
+// Definitions
 include 'app/definitions.php';
 
-//Core
-include "controller/Core.php";
+//Core functions
+include "app/Core.php";
 
-
-// PhpMailer
+// Vendor
 require 'vendor/phpmailer/class.phpmailer.php';
 
 ?>

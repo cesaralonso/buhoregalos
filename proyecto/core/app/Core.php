@@ -6,7 +6,7 @@
 class Core {
 
 	public static function includeCSS(){
-		$path = "res/css/";
+		$path = "assets/css/";
 		$handle=opendir($path);
 		if($handle){
 			while (false !== ($entry = readdir($handle)))  {
@@ -68,10 +68,8 @@ class Core {
 	 *
 	 * Depura el contenido de una variable y depura el valor llamado.
 	 *
-	 * Ahora se puede seleccionar si se desea que se muestre el código fuente de una funcion o si no.
+	 * Se puede seleccionar si se desea que se muestre el código fuente de una función
 	 *
-	 * @Version 1.1
-	 * @Date 18/09/2015
 	 */
 	public static function breakpoint ( $var, $show_source = false ) {
 		$break = debug_backtrace ( );
@@ -176,7 +174,7 @@ class Core {
 	}
 
 	public static function includeJS($file = null){
-		$path = "assets/js/";
+		$path = "core/js/";
 
 		$handle=opendir($path);
 		if($handle){

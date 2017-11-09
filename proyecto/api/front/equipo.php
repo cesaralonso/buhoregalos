@@ -73,6 +73,17 @@ switch($action){
 
   case "delete":
 
+        // Elimina equipo
+        $DaoEquipo = new DaoEquipo();
+        $Equipo = new Equipo();
+        $Equipo->setIdequipo($_POST["idequipo"]);
+        $eliminado = $DaoEquipo->delete($Equipo);
+
+        if($eliminado){
+            echo json_encode(array('status' => true, 'msg' => 'Se eliminó correctamente tu registro', 'class'=>'success'));
+        } else {
+            echo json_encode(array('status' => false, 'msg' => 'Error', 'class'=>'error'));
+        }
   break;
 
   case "edit":

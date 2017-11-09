@@ -1,14 +1,10 @@
 
         <div class="texto-encabezado text-xs-center">
-
             <div class="container">
                 <h1 class="display-4">Nosotros</h1>
                 <p class="wow bounceIn" data-wow-delay=".3s">¿Quienes somos? y ¿Que hacemos?.</p>
-
             </div>
-
         </div>
-
     </section>
     <section class="ruta py-1">
         <div class="container">
@@ -38,7 +34,6 @@
                                   Con la familia, los amigos o tu grupo de trabajo todos se conocen, todos saben o pueden intuir los gustos de los demás, esta es una forma en que podemos asegurar
                                   que un individuo puede obtener el artículo que él desea sin haberle preguntado cual era este, al mismo tiempo el sentirá que es algo especial pues
                                   fue lo que la mayoría creyó que se identificaría o le gustaría a él.
-
                                 </p>
                             </div>
                         </div>
@@ -54,7 +49,6 @@
                                       <li>Programar en qué fecha inicia y termina el intercambio. </li>
                                       <li>Agrega un rango de precios de artículos para el intercambio. </li>
                                       <li>Sugerir que artículos te interesa que te regalen y el de los demás. </li>
-
                                     </ul>
                                 </p>
                             </div>
@@ -74,8 +68,6 @@
                                       <li>El final de la votación será cuando termine el último de la lista en participar, cuando finalice el tiempo estipulado para este intercambio o cuando el líder lo decida.</li>
                                       <li>El sistema, al finalizar, aleatoriamente decidirá quien a quien le va a intercambiar y les avisará por medio de un correo
                                            a quien y que regalo se sugiere intercambie, al final este sabe si termina haciendo de este intercambio algo más personal.</li>
-
-
                                     </ul>
                                 </p>
                             </div>
@@ -83,7 +75,7 @@
                     </div>
                 </article>
                 <aside class="col-md-4 hidden-md-down">
-                    <img src="<?=APP_PATH?>images/buho.png" alt="Nosotros">
+                    <img src="<?=APP_PATH?>assets/images/buho.png" alt="Nosotros">
                 </aside>
             </div>
         </div>

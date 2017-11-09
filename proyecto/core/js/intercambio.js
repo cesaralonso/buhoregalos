@@ -84,6 +84,108 @@ Intercambio.prototype._save = function(){
 };
 
 
+Intercambio.prototype._getAllForMe = function(){
+	var data = {};
+	var self = this;
+	//AJAX REQUEST
+	$.ajax({
+		url 	: self.base_url,
+		method 	: 'POST',
+		dataType: 'JSON',
+		data 	: self.intercambio
+	})
+	.done( function( _res ){
+		self._draw(_res);
+	})
+	.fail( function( _err ){
+		console.log( _err );
+	})
+};
+
+
+/*
+ * 	DELETE INYTERCAMBIO
+ *	@params : {informacion intercambio}
+ *	=======================================
+ */
+Intercambio.prototype._delete = function(){
+	var self = this;
+	$.ajax({
+		url 	: (self.intercambio.base_url!==null) ? self.intercambio.base_url : self.base_url,
+		method 	: 'POST',
+		async 	: false,
+		data 	: self.intercambio
+	})
+	.done(function( _res ){
+
+		res = JSON.parse(_res);
+		setFlash(res.msg, res.class);
+
+		if( res.status ){
+			self.intercambio.method = 'allForMe';
+			self._getAllForMe();
+		} else {
+		}
+
+	})
+	.fail(function( _err ){
+		console.log( _err );
+	})
+};
+
+
+Intercambio.prototype._byId = function(){
+	var data = {};
+	var self = this;
+	//AJAX REQUEST
+	$.ajax({
+		url 	: self.intercambio.base_url,
+		method 	: 'POST',
+		dataType: 'JSON',
+		data 	: self.intercambio
+	})
+	.done( function( _res ){
+		//var res = JSON.parse(_res);
+		var res = _res;
+		self._drawById(res);
+	})
+	.fail( function( _err ){
+		console.log( _err );
+	})
+};
+
+
+Intercambio.prototype._update = function(){
+	var data = {};
+	var self = this;
+	//AJAX REQUEST
+	$.ajax({
+		url 	: self.intercambio.base_url,
+		method 	: 'POST',
+		dataType: 'JSON',
+		data 	: self.intercambio
+	})
+	.done( function( _res ){
+
+		//var res = JSON.parse(_res);
+		setFlash(_res.msg, _res.class);
+		
+		if( _res.status ){
+
+			setTimeout(function() {
+				window.location='../mis-intercambios';
+			}, 1500);
+		} else {
+		}
+
+	})
+	.fail( function( _err ){
+		console.log( _err );
+	})
+};
+
+
+
 
 /*
  *	SET DATA EQUIPO
@@ -98,12 +200,17 @@ Intercambio.prototype._set = function( _data ){
 	this.intercambio.fecha_fin 			= _data._fecha_fin || null;
 	this.intercambio.usuario_idusuario 	= _data._usuario_idusuario || null;
 	this.intercambio.method 			= _data._method || null;
+	this.intercambio.idintercambio		= _data._idintercambio || null;
 
 	if( this.intercambio.method === 'all')
 	{
 		this._getall();
 	}
-	if( this.intercambio.method === 'allForSelect')
+	else if( this.intercambio.method === 'allForMe')
+	{
+		this._getAllForMe();
+	}
+	else if( this.intercambio.method === 'allForSelect')
 	{
 		this._getallForSelect();
 	}
@@ -111,17 +218,15 @@ Intercambio.prototype._set = function( _data ){
 	{
 		this._byId();
 	}
-
 	else if( this.intercambio.method === 'getByUserId')
 	{
 		this._getByUserId();
 	}
-
 	else if( this.intercambio.method === 'save' )
 	{
 		this._save();
 	}
-	else if( this.intercambio.method === 'edit')
+	else if( this.intercambio.method === 'update')
 	{
 		this._update();
 	}
@@ -134,6 +239,7 @@ Intercambio.prototype._set = function( _data ){
 /*
  *	DRAW TEMPLATE HANDLEBARS
  * 	===========================
+ */
 
 Intercambio.prototype._draw = function( _data ){
 	if ( _data.length > 0){
@@ -144,8 +250,6 @@ Intercambio.prototype._draw = function( _data ){
 		$("#intercambio").html('<h3 class="text-center">Aún no tienes intercambios, ¡Registra uno!</h3>');
 	}
 };
- */
-
 
 Intercambio.prototype._drawSelect = function( _data ){
 	if ( _data.length > 0){
@@ -157,22 +261,13 @@ Intercambio.prototype._drawSelect = function( _data ){
 	}
 };
 
-
-
-/*
 Intercambio.prototype._drawById = function( _data ){
-	var self = this;
-	$("#modal-launcher").load('views/user/modals/m-info-focus.php?token=' + Math.random(), function(e){
-		$("#modal-info-focus").modal({
-			show : true,
-			backdrop : 'static',
-			keyboard : false
-		});
-		$("#txt__Description").val( _data.texto );
-		$("#txt__user").val( self.userid );
-		$("#txt__post").val( _data.Post_idPost );
-		$("#txt__id").val( _data.id );
-	})
-}
+	if ( _data.length > 0){
+		var template = Handlebars.compile( $("#intercambio-byid-template").html() );
+		var html = template( _data );
+		$("#intercambio-byid").html( html ).fadeIn();
+	} else {
+		$("#intercambio-byid").html('<h3 class="text-center">Aún no tienes intercambios, ¡Registra uno!</h3>');
+	}
+};
 
- */

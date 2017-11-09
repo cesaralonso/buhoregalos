@@ -230,9 +230,6 @@ Usuario.prototype._finishAndEmailToAllByIdequipo = function(){
 };
 
 
-
-
-
 /*
  * 	NUEVA USUARIO
  *	@params : {informacion usuario}
@@ -254,9 +251,6 @@ Usuario.prototype._getAllByIdequipoWithArticulos = function(){
 		console.log( _err );
 	})
 };
-
-
-
 
 
 /*
@@ -322,11 +316,6 @@ Usuario.prototype._saveIntegrante = function(){
 };
 
 
-
-
-
-
-
 /*
  * 	NUEVA USUARIO
  *	@params : {informacion usuario}
@@ -354,9 +343,6 @@ Usuario.prototype._saveLikeArticulo = function(){
 		console.log( _err );
 	})
 };
-
-
-
 
 
 /*
@@ -388,10 +374,6 @@ Usuario.prototype._saveArticulo = function(){
 		console.log( _err );
 	})
 };
-
-
-
-
 
 
 /*

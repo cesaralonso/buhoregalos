@@ -22,6 +22,16 @@ switch($action){
       echo json_encode( $DaoIntercambio->getAllByUserId($_SESSION["idusuario"]) );
   break;
 
+  case "allForMe":
+      echo json_encode( $DaoIntercambio->getAllByUserId($_SESSION["idusuario"]) );
+  break;
+
+  case "byId":
+      $DaoIntercambio = new DaoIntercambio();
+      $intercambio = (array) $DaoIntercambio->getById($_POST["idintercambio"]);
+      echo json_encode( array($intercambio) );
+  break;
+
   case "getByUserId":
       $Intercambio = new Intercambio();
       $Intercambio->setUsuarioIdusuario($_SESSION["idusuario"]);
@@ -30,16 +40,44 @@ switch($action){
 
   case "delete":
 
+        // Elimina inyercambio
+        $DaoIntercambio = new DaoIntercambio();
+        $Intercambio = new Intercambio();
+        $Intercambio->setIdintercambio($_POST["idintercambio"]);
+        $eliminado = $DaoIntercambio->delete($Intercambio);
+
+        if($eliminado){
+            echo json_encode(array('status' => true, 'msg' => 'Se eliminó correctamente tu registro', 'class'=>'success'));
+        } else {
+            echo json_encode(array('status' => false, 'msg' => 'Error', 'class'=>'error'));
+        }
   break;
 
-  case "edit":
+  case "update":
+
+        if($_SESSION['idrol'] !== "LIDER"){
+        exit;
+        }
+
+        $Intercambio = new Intercambio();
+        $Intercambio->setIdintercambio($_POST["idintercambio"]);
+        $Intercambio->setNombre($_POST["nombre"]);
+        $Intercambio->setFechaIni($_POST['fecha_ini']);
+        $Intercambio->setFechaFin($_POST['fecha_fin']);
+
+        $id = $DaoIntercambio->update($Intercambio);
+        if(is_numeric($id)){
+            echo json_encode(array('status' => true, 'msg' => 'Se actualizo correctamente tu registro', 'class'=>'success', 'data'=>$id));
+        } else {
+            echo json_encode(array('status' => false, 'msg' => 'Error', 'class'=>'error',));
+        }
   break;
 
   case "save":
 
-      if($_SESSION['idrol'] !== "LIDER"){
-        exit;
-      }
+        if($_SESSION['idrol'] !== "LIDER"){
+            exit;
+        }
 
         $Intercambio = new Intercambio();
         $Intercambio->setNombre($_POST["nombre"]);
