@@ -34,6 +34,10 @@
                     <form id="formIntercambio">
 
                         <div class="form-group row">
+                            <h3 class="col-md-12">Sorteo</h3>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="equipo" class="col-md-4 col-form-label">Identifica este intercambio</label>
 
                             <div class="col-md-8">
@@ -46,7 +50,7 @@
                             <label for="fecha_ini" class="col-md-4 col-form-label">Fecha de inicio</label>
 
                             <div class="col-md-8">
-                                <input class="form-control" type="text" id="fecha_ini" name="fecha_ini" placeholder="Fecha de inicio" data-toggle="tooltip" data-placement="top" title="Fecha de inicio">
+                                <input class="form-control" type="date" id="fecha_ini" name="fecha_ini" placeholder="Fecha de inicio" data-toggle="tooltip" data-placement="top" title="Fecha de inicio">
                             </div>
                         </div>
 
@@ -54,7 +58,43 @@
                             <label for="fecha_fin" class="col-md-4 col-form-label">Fecha de término</label>
 
                             <div class="col-md-8">
-                                <input class="form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha de término" data-toggle="tooltip" data-placement="top" title="Fecha de término">
+                                <input class="form-control" type="date" id="fecha_fin" name="fecha_fin" placeholder="Fecha de término" data-toggle="tooltip" data-placement="top" title="Fecha de término">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <h3 class="col-md-12">Celebración</h3>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lugar" class="col-md-4 col-form-label">Lugar</label>
+
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" id="lugar" name="lugar" placeholder="Lugar de la celebración" data-toggle="tooltip" data-placement="top" title="Lugar de la celebración">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="direccion" class="col-md-4 col-form-label">Dirección</label>
+
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Dirección de la celebración" data-toggle="tooltip" data-placement="top" title="Dirección de la celebración">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="fecha" class="col-md-4 col-form-label">Fecha</label>
+
+                            <div class="col-md-8">
+                                <input class="form-control" type="date" id="fecha" name="fecha" placeholder="Fecha de la celebración" data-toggle="tooltip" data-placement="top" title="Fecha de la celebración">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="hora" class="col-md-4 col-form-label">Hora</label>
+
+                            <div class="col-md-8">
+                                <input class="form-control" type="time" id="hora" name="hora" placeholder="Hora de la celebración" data-toggle="tooltip" data-placement="top" title="Hora de la celebración">
                             </div>
                         </div>
 
@@ -78,7 +118,7 @@
     <script>
         $(function(){
 
-            $("#fecha_fin, #fecha_ini").datepicker({ format: 'yyyy-mm-dd' });
+            // $("#fecha_fin, #fecha_ini, #fecha").datepicker({ format: 'yyyy-mm-dd' });
 
             var intercambio = new Intercambio();
             $(document).off('submit').on('submit', '#formIntercambio', function(e){
@@ -88,6 +128,10 @@
                     '_nombre'           : $("#nombre").val(),
                     '_fecha_ini'        : $("#fecha_ini").val(),
                     '_fecha_fin'        : $("#fecha_fin").val(),
+                    '_lugar'            : $("#lugar").val(),
+                    '_direccion'        : $("#direccion").val(),
+                    '_fecha'            : $("#fecha").val(),
+                    '_hora'             : $("#hora").val(),
                     '_method'           : 'save'
                 };
                 intercambio._set(data);

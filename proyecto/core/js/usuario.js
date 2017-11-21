@@ -179,7 +179,7 @@ Usuario.prototype._getAllByIdequipo = function(){
 
 
 /*
- * 	NUEVA USUARIO
+ * 	EMAIL A NO PARTICIPANTES
  *	@params : {informacion usuario}
  *	=======================================
  */
@@ -204,8 +204,37 @@ Usuario.prototype._emailToAllByIdequipo = function(){
 };
 
 
+
 /*
- * 	NUEVA USUARIO
+ * 	EMAIL A TODOS LOS MIEMBROS DE UN EQUIPO INVITACIÓN A PARTICIPAR
+ *	@params : {informacion usuario}
+ *	=======================================
+ */
+Usuario.prototype._emailToAllByIdequipoWithParticipando = function(){
+
+	var self = this;
+	$.ajax({
+		url 	: (self.usuario.base_url!==null) ? self.usuario.base_url : self.base_url,
+		method 	: 'POST',
+		async 	: true,
+		data 	: self.usuario
+	})
+	.done(function( _res ){
+
+		res = JSON.parse(_res);
+		setFlash(res.msg, res.class);
+
+	})
+	.fail(function( _err ){
+		console.log( _err );
+	})
+};
+
+
+
+
+/*
+ * 	FINALIZA SORTEO
  *	@params : {informacion usuario}
  *	=======================================
  */
@@ -228,6 +257,37 @@ Usuario.prototype._finishAndEmailToAllByIdequipo = function(){
 		console.log( _err );
 	})
 };
+
+
+/*
+ * 	RESETEA SORTEO
+ *	@params : {informacion usuario}
+ *	=======================================
+ */
+Usuario.prototype._reseteaIntercambiando = function(){
+
+	var self = this;
+	$.ajax({
+		url 	: (self.usuario.base_url!==null) ? self.usuario.base_url : self.base_url,
+		method 	: 'POST',
+		async 	: true,
+		data 	: self.usuario
+	})
+	.done(function( _res ){
+
+		res = JSON.parse(_res);
+		setFlash(res.msg, res.class);
+
+	})
+	.fail(function( _err ){
+		console.log( _err );
+	})
+};
+
+
+
+
+
 
 
 /*
@@ -453,6 +513,10 @@ Usuario.prototype._set = function( _data ){
 	{
 		this._emailToAllByIdequipo();
 	}
+	if( this.usuario.method === 'emailToAllByIdequipoWithParticipando')
+	{
+		this._emailToAllByIdequipoWithParticipando();
+	}
 	if( this.usuario.method === 'finishAndEmailToAllByIdequipo')
 	{
 		this._finishAndEmailToAllByIdequipo();
@@ -501,6 +565,12 @@ Usuario.prototype._set = function( _data ){
 	{
 		this._activarUsuario()
 	}
+	else if( this.usuario.method === 'reseteaIntercambiando')
+	{
+		this._reseteaIntercambiando()
+	}
+
+	
 
 
 

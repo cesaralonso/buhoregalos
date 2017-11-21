@@ -144,10 +144,10 @@ class Core {
 		$mail->isSMTP();                                      // Set mailer to use SMTP
 		$mail->Host = 'fiero.websitewelcome.com';  // Specify main and backup SMTP servers
 		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = 'no-reply@buhoregalos.com';                 // SMTP username
-		$mail->Password = 'F?w$;ktCC0V#';                           // SMTP password
+		$mail->Username = 'no-reply@buhointercambios.club';                 // SMTP username
+		$mail->Password = '772$!}xPTA7p';                           // SMTP password
 		$mail->Port = 26;                                    // TCP port to connect to
-		$mail->setFrom('no-reply@buhoregalos.com', 'Búho Intercambios');
+		$mail->setFrom('no-reply@buhointercambios.club', 'BÚHO INTERCAMBIOS');
 		$mail->addAddress($emailto);               // Name is optional
 		$mail->isHTML(true);                                  // Set email format to HTML
 		$mail->Subject = $subject;

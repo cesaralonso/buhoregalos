@@ -64,6 +64,10 @@ switch($action){
         $Intercambio->setNombre($_POST["nombre"]);
         $Intercambio->setFechaIni($_POST['fecha_ini']);
         $Intercambio->setFechaFin($_POST['fecha_fin']);
+        $Intercambio->setLugar($_POST['lugar']);
+        $Intercambio->setDireccion($_POST['direccion']);
+        $Intercambio->setFecha($_POST['fecha']);
+        $Intercambio->setHora($_POST['hora']);
 
         $id = $DaoIntercambio->update($Intercambio);
         if(is_numeric($id)){
@@ -83,6 +87,10 @@ switch($action){
         $Intercambio->setNombre($_POST["nombre"]);
         $Intercambio->setFechaIni($_POST['fecha_ini']);
         $Intercambio->setFechaFin($_POST['fecha_fin']);
+        $Intercambio->setLugar($_POST['lugar']);
+        $Intercambio->setDireccion($_POST['direccion']);
+        $Intercambio->setFecha($_POST['fecha']);
+        $Intercambio->setHora($_POST['hora']);
         $Intercambio->setUsuarioIdusuario($_SESSION["idusuario"]);
         $Intercambio->setEstatus("CREADO");
 

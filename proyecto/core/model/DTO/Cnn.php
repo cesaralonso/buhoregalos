@@ -2,9 +2,9 @@
 //error_reporting(E_ALL);
 class cnn {
     private $_hostname = "localhost";
-    private $_username = "wwwbuhor_root";
-    private $_password = "F?w$;ktCC0V#";
-    protected $_database = "wwwbuhor_buhoregalos";
+    private $_username = "buhointe_root";
+    private $_password = "772$!}xPTA7p";
+    protected $_database = "buhointe_buhointercambios";
     protected $_cnn = "";
 
     public function __construct() {

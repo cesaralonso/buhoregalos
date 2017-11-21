@@ -20,55 +20,57 @@
         <div class="container">
             <div class="row">
                 <article class="col-md-8">
-                    <h2>Quienes somos</h2>
+                    <h2>Acerca de BÚHO INTERCAMBIOS</h2>
                     <p>
-                        Te brindamos la herramienta perfecta para organizar el intercambio en tu familia, amigos o empresa.
+                        Herramienta para organizar intercambios navideños sencillos y divertidos con tu <strong>empresa</strong>, familia o amigos.
+                    </p>
+                    <p>
+                        BÚHO INTERCAMBIOS fué creado en el año 2016 para ayudar a la <a href="http://www.qualtop.com/" title="Qualtop Group">empresa multinacional Qualtop Group</a> a organizar el intercambio navideño interno de la empresa, <strong>el cúal fué todo
+un éxito</strong>, participando empleados y directivos, los cuales fueron organizados a travez de esta aplicación de una manera muy sencilla, eficaz y divertida.
                     </p>
                     <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <h4 class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#tab-objetivo"> OBJETIVO </a>
+                            </h4>
+                            <div id="tab-objetivo" class="panel-collapse collapse in">
+                                <p>Es tiempo de dejar atras los clásicos intercambios navideños de tazas de cafe o artículos que pocas veces serán los que en verdad deseabamos.
+                                </p>
+                                <p>
+                                  BÚHO INTERCAMBIOS se crea para ser la solución para asegurar
+                                  que todo participante de un intercambio navideño pueda obtener el artículo que desea, especialmente, buscando que grandes empresas logren hacer un intercambio exitoso permitiendo que se organicen por equipos.
+                                </p>
+                            </div>
+                        </div>
                         <div class="panel panel-default">
                             <h4 class="panel-heading">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#tab-funciona"> COMO FUNCIONA </a>
                             </h4>
                             <div id="tab-funciona" class="panel-collapse collapse in">
+                                <h4>Organiza el sorteo de regalos de intercambio y ¡Dales gusto a todos!</h4>
                                 <p>
-                                  Con la familia, los amigos o tu grupo de trabajo todos se conocen, todos saben o pueden intuir los gustos de los demás, esta es una forma en que podemos asegurar
-                                  que un individuo puede obtener el artículo que él desea sin haberle preguntado cual era este, al mismo tiempo el sentirá que es algo especial pues
-                                  fue lo que la mayoría creyó que se identificaría o le gustaría a él.
+                                    Crea un usuario como lider organizador del intercambio navideño de tu empresa, familia o grupo de amigos.
                                 </p>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <h4 class="panel-heading">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#tab-pasos"> PASOS </a>
-                            </h4>
-                            <div id="tab-pasos" class="panel-collapse collapse">
-                                <p> Para crear intercambios deberás:
-                                    <ul>
-                                      <li>Crea un líder para crear el intercambio. </li>
-                                      <li>Agrega una lista de participantes. </li>
-                                      <li>Programar en qué fecha inicia y termina el intercambio. </li>
-                                      <li>Agrega un rango de precios de artículos para el intercambio. </li>
-                                      <li>Sugerir que artículos te interesa que te regalen y el de los demás. </li>
-                                    </ul>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <h4 class="panel-heading">
-                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#tab-reglas" >REGLAS</a>
-                            </h4>
-                            <div id="tab-reglas" class="panel-collapse collapse">
                                 <p>
-                                    <ul>
-                                      <li>Solo puede haber un líder.</li>
-                                      <li>El líder puede crear tantos intercambios y equipos para intercambios como le convenga. </li>
-                                      <li>Cada participante tiene un usuario y contraseña y puede accesar al sistema para
-                                           elegir un articulo para cada participante según el crea le gustará más.</li>
-                                      <li>Nadie puede ver del listado de participantes el artículo que lleva la delantera para cada uno.</li>
-                                      <li>El final de la votación será cuando termine el último de la lista en participar, cuando finalice el tiempo estipulado para este intercambio o cuando el líder lo decida.</li>
-                                      <li>El sistema, al finalizar, aleatoriamente decidirá quien a quien le va a intercambiar y les avisará por medio de un correo
-                                           a quien y que regalo se sugiere intercambie, al final este sabe si termina haciendo de este intercambio algo más personal.</li>
-                                    </ul>
+                                    Identifica un intercambio con una fecha de inicio y fin y los datos de donde se llevará a cabo la celebración del intercambio, puedes organizar los intercambios que desees.   
+                                <p>
+                                    Crea los equipos de intercambio necesarios para organizar el intercambio que has creado, eligiendo el número y precio de los artículos a intercambiar. 
+                                </p>
+                                <p>
+                                    <strong>Empresa: Sabemos que las organizaciones grandes tienen departamentos con diferentes peticiones en el intercambio, ¡Dales gusto a todos!</strong>
+                                </p>
+                                <p>
+                                    Puedes crear los equipos que desees, por ejemplo: El equipo de Desarrolladores, Administradores, etc.
+                                </p>
+                                <h4>Participa en el sorteo de regalos de intercambio</h4>
+                                <p>
+                                    1. Revisa tu correo (recuerda revisar el correo no deseado) y encuentra tu usuario y password para accesar a la aplicación y agregar las opciones de regalo que te gustaría recibir.
+                                </p>
+                                <p>
+                                    Puedes elegir del listado acumulado los artículos dando click en el ícono de lista <button type="button" class="btn btn-primary"><i class="fa fa-list"></i></button>, o agregar una nueva opción dando click en el ícono de + <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>.
+                                </p>
+                                <p>
+                                    2. Una vez realizado el sorteo, recibirás un correo de confirmación con el nombre de la persona a la que deberás entregar regalo, así como las opciones de regalo seleccionadas. 
                                 </p>
                             </div>
                         </div>
@@ -76,6 +78,9 @@
                 </article>
                 <aside class="col-md-4 hidden-md-down">
                     <img src="<?=APP_PATH?>assets/images/buho.png" alt="Nosotros">
+
+                    <?php include ("views/includes/articles-amazon.php"); ?>
+
                 </aside>
             </div>
         </div>

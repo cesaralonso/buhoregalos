@@ -63,12 +63,17 @@ if(!$islogged && !$isadmin){
                 <article class="col-md-8" >
                     <div id="integrantes"></div>
                     <div class="row p-3">
-                        <div class="col-md-8 offset-md-4" style="text-align: center;">
-                            <button type="button" class="btn btn-info" id="btnEnviaInvitaciones"><i class="fa fa-envelope"></i> Enviar invitación masiva <span class="small">(a no participantes)</span></button>
+                        <div class="col-md-12" style="text-align: center;">
+                            <h2>Invitar por correo</h2>
+                            <button type="button" class="btn btn-info" id="btnEnviaInvitacionesToAll"><i class="fa fa-envelope"></i> Enviar a todos</button>
+                            <button type="button" class="btn btn-info" id="btnEnviaInvitaciones"><i class="fa fa-envelope"></i> Enviar a no participantes</button>
                         </div>
                     </div>
                 </article>
                 <aside class="col-md-4">
+
+                    <?php include ("views/includes/articles-amazon.php"); ?>
+                    
                 </aside>
             </div>
         </div>
@@ -515,6 +520,21 @@ if(!$islogged && !$isadmin){
                    '_base_url'   : '../api/front/usuario.php',
                    '_idequipo'   : '<?=$_GET['id']?>',
                    '_method'     : 'emailToAllByIdequipo'
+                }
+                usuario._set(params);
+
+            });
+
+            $('#btnEnviaInvitacionesToAll').on('click', function (event) {
+
+                event.preventDefault();
+
+                // Envia a lista de integrantes
+                var usuario = new Usuario();
+                var params = {
+                   '_base_url'   : '../api/front/usuario.php',
+                   '_idequipo'   : '<?=$_GET['id']?>',
+                   '_method'     : 'emailToAllByIdequipoWithParticipando'
                 }
                 usuario._set(params);
 

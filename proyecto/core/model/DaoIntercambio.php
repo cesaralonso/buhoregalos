@@ -7,10 +7,14 @@ class DaoIntercambio extends base{
     public $tableName="intercambio";
 
     public function add(Intercambio $x){
-          $query=sprintf("INSERT INTO ".$this->tableName." (nombre, fecha_ini, fecha_fin, estatus, usuario_idusuario) VALUES (%s ,%s, %s, %s, %s)",
+          $query=sprintf("INSERT INTO ".$this->tableName." (nombre, fecha_ini, fecha_fin, lugar, direccion, fecha, hora, estatus, usuario_idusuario) VALUES (%s ,%s, %s, %s, %s, %s, %s, %s, %s)",
           $this->GetSQLValueString($x->getNombre(), "text"),
           $this->GetSQLValueString($x->getFechaIni(), "date"),
           $this->GetSQLValueString($x->getFechaFin(), "date"),
+          $this->GetSQLValueString($x->getLugar(), "text"),
+          $this->GetSQLValueString($x->getDireccion(), "text"),
+          $this->GetSQLValueString($x->getFecha(), "date"),
+          $this->GetSQLValueString($x->getHora(), "text"),
           $this->GetSQLValueString($x->getEstatus(), "text"),
           $this->GetSQLValueString($x->getUsuarioIdusuario(), "int"));
           $Result1=$this->_cnn->query($query);
@@ -28,7 +32,7 @@ class DaoIntercambio extends base{
     }
                       
     public function getAllByUserId($idusuario){
-        $query = "SELECT idintercambio, nombre, fecha_ini, fecha_fin, estatus FROM ".$this->tableName." WHERE usuario_idusuario = $idusuario AND baja = 0 ORDER BY nombre";
+        $query = "SELECT idintercambio, nombre, fecha_ini, fecha_fin, lugar, direccion, fecha, hora estatus FROM ".$this->tableName." WHERE usuario_idusuario = $idusuario AND baja = 0 ORDER BY nombre";
         $resultSet = $this->advancedQuery($query);
         return $resultSet;
     }
@@ -43,10 +47,14 @@ class DaoIntercambio extends base{
     }
 
     public function update(Intercambio $x){
-          $query=sprintf("UPDATE ".$this->tableName." SET nombre=%s, fecha_ini=%s, fecha_fin=%s WHERE idintercambio = %s",
+          $query=sprintf("UPDATE ".$this->tableName." SET nombre=%s, fecha_ini=%s, fecha_fin=%s, lugar=%s, direccion=%s, fecha=%s, hora=%s WHERE idintercambio = %s",
           $this->GetSQLValueString($x->getNombre(), "text"),
           $this->GetSQLValueString($x->getFechaIni(), "date"),
           $this->GetSQLValueString($x->getFechaFin(), "date"),
+          $this->GetSQLValueString($x->getLugar(), "text"),
+          $this->GetSQLValueString($x->getDireccion(), "text"),
+          $this->GetSQLValueString($x->getFecha(), "date"),
+          $this->GetSQLValueString($x->getHora(), "text"),
           $this->GetSQLValueString($x->getIdintercambio(), "int"));
           $Result1=$this->_cnn->query($query);
           if(!$Result1) {
@@ -82,6 +90,10 @@ class DaoIntercambio extends base{
         $x->setNombre($row['nombre']);
         $x->setFechaIni($row['fecha_ini']);
         $x->setFechaFin($row['fecha_fin']);
+        $x->setLugar($row['lugar']);
+        $x->setDireccion($row['direccion']);
+        $x->setFecha($row['fecha']);
+        $x->setHora($row['hora']);
         $x->setEstatus($row['estatus']);
         $x->setUsuarioIdusuario($row['usuario_idusuario']);
         return $x;

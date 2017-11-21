@@ -198,6 +198,10 @@ Intercambio.prototype._set = function( _data ){
 	this.intercambio.nombre 			= _data._nombre || null;
 	this.intercambio.fecha_ini 			= _data._fecha_ini || null;
 	this.intercambio.fecha_fin 			= _data._fecha_fin || null;
+	this.intercambio.lugar 				= _data._lugar || null;
+	this.intercambio.direccion 			= _data._direccion || null;
+	this.intercambio.fecha 				= _data._fecha || null;
+	this.intercambio.hora 				= _data._hora || null;
 	this.intercambio.usuario_idusuario 	= _data._usuario_idusuario || null;
 	this.intercambio.method 			= _data._method || null;
 	this.intercambio.idintercambio		= _data._idintercambio || null;
@@ -247,7 +251,7 @@ Intercambio.prototype._draw = function( _data ){
 		var html = template( _data );
 		$("#intercambio").html( html ).fadeIn();
 	} else {
-		$("#intercambio").html('<h3 class="text-center">Aún no tienes intercambios, ¡Registra uno!</h3>');
+		$("#intercambio").html('<h3 class="text-center">Aún no tienes intercambios, ¡Registra uno!</h3><p class="card-text">Crear intercambio</p><a href="intercambio" class="btn btn-primary"><i class="fa fa-plus"></i></a>');
 	}
 };
 

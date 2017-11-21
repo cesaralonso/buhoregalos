@@ -27,24 +27,26 @@ if(!$islogged){
             <div class="row">
                 <article class="col-md-12">
                   <h2>Participa en el sorteo de regalos de intercambio</h2>
-                  <p>
-                      1. Búscate en la lista de participantes y <strong>crea o elige de un listado los articulos que deseas recibir</strong>.
-                  </p>
-                  <p>
-                      2. <strong>Selecciona</strong> el regalo que consideres <strong>más apropiado para ti y para cada uno de tus compañeros</strong>, el regalo más votado será el sugerido, ¡participa!, <strong> ¡No olvides guardar la selección!</strong>
-                  </p>
-                  <p>
-                      3. Una vez guardada la selección solo debes esperar a que el líder finalice el intercambio para recibir en tu correo el resultado, <strong>con quien debes y que regalo se sugiere intercambiar.</strong> </strong>
-                  </p>
+                    <p>
+                        1. Encuentra tu nombre en la lista de participantes y agrega las opciones de regalo que te gustaría recibir.
+                    </p>
+                    <p>
+                        Puedes elegir del listado acumulado los artículos dando click en el ícono de lista <button type="button" class="btn btn-primary"><i class="fa fa-list"></i></button>, o agregar una nueva opción dando click en el ícono de + <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>.
+                    </p>
+                    <p>
+                        2. Una vez realizado el sorteo, recibirás un correo de confirmación con el nombre de la persona a la que deberás entregar regalo, así como las opciones de regalo seleccionadas. 
+                    </p>
 
+                    <br>
                     <div id="integrantes">
                     </div>
-
                     <div style="text-align: center;">
-                        <button type="button" id="btnGuardarSeleccion" class="btn btn-success btn-lg"><i class="fa fa-save"></i> Guardar votos</button>
+                        <button type="button" id="btnGuardarSeleccion" class="btn btn-success btn-lg"><i class="fa fa-save"></i> Guardar</button>
                     </div>
-                </article>
+                   
+                    <?php include ("views/includes/articles-amazon.php"); ?>
 
+                </article>
             </div>
         </div>
     </main>
@@ -83,7 +85,6 @@ if(!$islogged){
                                             <span class="input-group-addon">$</span>
                                             <input class="form-control" type="number" step="10" id="precio_min" name="precio_min" placeholder="Ingrese su precio mínimo" data-toggle="tooltip" data-placement="top" title="Ingrese su precio mínimo" max="20000" autocomplete="off">
                                             <span class="input-group-addon">.00 M.N.</span>
-
                                         </div>
                                     </div>
                                 </div>
@@ -197,6 +198,37 @@ if(!$islogged){
         </div>
     </div>
 
+    <!-- 
+        CÓDIGO ORIGINAL, MUESTRA DE TODOS LOS COMPAÑEROS
+        {{#each this}}
+        <tr>
+            <td>{{nombres}} {{apellidos}}</td>
+            <td>
+            <div class="btn-group" data-toggle="buttons">
+                {{#if ismine}}
+                <button data-idusuario="{{idusuario}}" data-min="{{equipo/precio_min}}" data-max="{{equipo/precio_max}}" data-nombres="{{nombres}}" data-toggle="modal" data-target="#listaArticulo" type="button" class="btn btn-primary">
+                    <i class="fa fa-list"></i>
+                </button>
+                {{/if}}
+                {{#each articulos}}
+                    <label class="btn btn-primary {{#if selected_for_me}}active{{/if}}" data-idarticulo="{{idarticulo}}" data-idusuario="{{../idusuario}}" data-nombre="{{nombre}}" >
+                    <input type="radio" name="options{{../idusuario}}" autocomplete="off" data-idusuario="{{../idusuario}}" data-idarticulo="{{idarticulo}}" >{{nombre}}
+                    </label>
+                    {{#if ../ismine}}
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#eliminaArticulo" data-idarticulo="{{idarticulo}}" data-idusuario="{{../idusuario}}" data-nombre="{{nombre}}"><i class="fa fa-close"></i></button>
+                    {{/if}}
+                {{/each}}
+                {{#if ismine}}
+                <button data-idusuario="{{idusuario}}" data-min_raw="{{equipo/precio_min_raw}}" data-max_raw="{{equipo/precio_max_raw}}" data-min="{{equipo/precio_min}}" data-max="{{equipo/precio_max}}" data-nombres="{{nombres}}" data-toggle="modal" data-target="#usuarioArticulo" type="button" class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+                </button>
+                {{/if}}
+            </div>
+            </td>
+        </tr>
+        {{/each}}
+    -->
+
     <script id="articulo-select-template" type="x-text/handlebars">
         <select class="form-control" id="idarticulo" name="idarticulo" data-toggle="tooltip" data-placement="top" title="Elige un articulo">
             {{#each this}}
@@ -205,11 +237,10 @@ if(!$islogged){
         </select>
     </script>
 
-
     <!-- CURRENT EVENTS TEMPLATE -->
     <script id="integrantes-template" type="x-text/handlebars">
 
-      <h2>Tu equipo</h2>
+      <h2>Tus sugerencias</h2>
       <form id="formSeleccionaArticulos">
         <table class="table table-hover">
           <thead>
@@ -219,35 +250,29 @@ if(!$islogged){
             </tr>
           </thead>
           <tbody>
-
           {{#each this}}
+            {{#if ismine}}
             <tr>
               <td>{{nombres}} {{apellidos}}</td>
               <td>
                 <div class="btn-group" data-toggle="buttons">
-                    {{#if ismine}}
                     <button data-idusuario="{{idusuario}}" data-min="{{equipo/precio_min}}" data-max="{{equipo/precio_max}}" data-nombres="{{nombres}}" data-toggle="modal" data-target="#listaArticulo" type="button" class="btn btn-primary">
                         <i class="fa fa-list"></i>
                     </button>
-                    {{/if}}
                     {{#each articulos}}
                       <label class="btn btn-primary {{#if selected_for_me}}active{{/if}}" data-idarticulo="{{idarticulo}}" data-idusuario="{{../idusuario}}" data-nombre="{{nombre}}" >
                         <input type="radio" name="options{{../idusuario}}" autocomplete="off" data-idusuario="{{../idusuario}}" data-idarticulo="{{idarticulo}}" >{{nombre}}
                       </label>
-                      {{#if ../ismine}}
                       <button class="btn btn-danger" data-toggle="modal" data-target="#eliminaArticulo" data-idarticulo="{{idarticulo}}" data-idusuario="{{../idusuario}}" data-nombre="{{nombre}}"><i class="fa fa-close"></i></button>
-                      {{/if}}
                     {{/each}}
-                    {{#if ismine}}
                     <button data-idusuario="{{idusuario}}" data-min_raw="{{equipo/precio_min_raw}}" data-max_raw="{{equipo/precio_max_raw}}" data-min="{{equipo/precio_min}}" data-max="{{equipo/precio_max}}" data-nombres="{{nombres}}" data-toggle="modal" data-target="#usuarioArticulo" type="button" class="btn btn-success">
                         <i class="fa fa-plus"></i>
                     </button>
-                    {{/if}}
                 </div>
               </td>
             </tr>
+            {{/if}}
           {{/each}}
-
           </tbody>
         </table>
       </form>
@@ -303,7 +328,6 @@ if(!$islogged){
                     '_method'       : 'allForSelect'
                 }
                 articulo._set(data);
-
 
                 // Agrega articulo
                 $(document).off('submit').on('submit', '#formListaArticulo', function(e){

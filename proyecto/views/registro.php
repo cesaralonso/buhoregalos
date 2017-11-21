@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="row">
                     <article class="col-md-6 offset-md-3" style="padding:0 30px 30px 30px; background-color: #064e4e;">
-                        <h1 class="display-4">Registrate</h1>
+                        <h1 class="display-4">Regístrate</h1>
                         <p class="wow bounceIn" data-wow-delay=".3s">Crea un usuario lider.</p>
                         <form id="formUsuario">
                             <div class="form-group row">
@@ -60,7 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-xs-right">
-                    <a href="<?=APP_PATH?>">Inicio</a> » Registrate
+                    <a href="<?=APP_PATH?>">Inicio</a> » Regístrate
                 </div>
             </div>
         </div>
@@ -68,6 +68,7 @@
     <main class="py-1">
         <div class="container">
             <div class="row">
+                <?php include ("views/includes/articles-amazon.php"); ?>
             </div>
         </div>
     </main>

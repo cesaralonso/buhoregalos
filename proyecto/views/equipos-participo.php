@@ -31,6 +31,9 @@ if(!$islogged){
                 </article>
                 <aside class="col-md-4 hidden-md-down">
                     <img src="<?=APP_PATH?>assets/images/buho.png" alt="Nosotros">
+
+                    <?php include ("views/includes/articles-amazon.php"); ?>
+
                 </aside>
             </div>
         </div>

@@ -279,7 +279,7 @@ Equipo.prototype._draw = function( _data ){
 		var html = template( _data );
 		$("#equipo").html( html ).fadeIn();
 	} else {
-		$("#equipo").html('<h3 class="text-center">Aún no tienes equipos, ¡Registra uno!</h3>');
+		$("#equipo").html('<h3 class="text-center">Aún no tienes equipos, ¡Registra uno!</h3><p class="card-text">Crear equipo</p><a href="equipo" class="btn btn-primary"><i class="fa fa-plus"></i></a>');
 	}
 };
 

@@ -31,7 +31,7 @@ switch($action){
       $idarticulo = null;
 
       // Si se envían datos de articulo o se obtiene de listado
-      if(!empty($_POST['nombre']) && !empty($_POST['precio_min']) && !empty($_POST['precio_max'])){
+      if(!empty($_POST['nombre']) && (!empty($_POST['precio_min']) or (!$_POST['precio_min']>=0)) && (!empty($_POST['precio_max']) or (!$_POST['precio_max']>=0))){
 
         // Se valida si el precio entra en el rango establecido en el equipo
         if ($_POST['precio_min'] >= $equipo->precio_min && $_POST['precio_max'] <= $equipo->precio_max){
@@ -41,16 +41,16 @@ switch($action){
             $Articulo->setNombre($_POST["nombre"]);
             $Articulo->setPrecioMin($_POST['precio_min']);
             $Articulo->setPrecioMax($_POST['precio_max']);
-
             $idarticulo = $DaoArticulo->add($Articulo);
 
         } else {
-            echo json_encode(array('status' => false, 'msg' => 'El rango de precios no entra en en rango1 establecido para el intercambio de este equipo', 'class'=>'danger'));
+            echo json_encode(array('status' => false, 'msg' => 'El rango de precios no entra en en rango establecido para el intercambio de este equipo', 'class'=>'danger'));
             exit;
         }
 
       } else {
-        if(isset($_POST['idarticulo'])){
+
+        if(isset($_POST['idarticulo']) && $_POST['idarticulo'] !== ''){
 
             // Se obtiene rango de precios del articulo y se valida
             $Articulo = $DaoArticulo->getById($_POST['idarticulo']);
@@ -60,7 +60,7 @@ switch($action){
 
                 $idarticulo =  $Articulo->idarticulo;
 
-            }else {
+            } else {
                 echo json_encode(array('status' => false, 'msg' => 'El rango de precios no entra en en rango2 establecido para el intercambio de este equipo', 'class'=>'danger'));
                 exit;
             }
@@ -73,7 +73,7 @@ switch($action){
       $UsuarioHasArticulo->setUsuarioIdusuario( $_POST['idusuario'] );
       $UsuarioHasArticulo->setArticuloIdarticulo( $idarticulo );
       $UsuarioHasArticulo->setPromedio(5);
-
+      
       // Se obtiene el total de articulos para el usuario
       $countUsuariohasarticulo = $DaoUsuarioHasArticulo->getCountByIdusuarioIdarticulo($UsuarioHasArticulo);
 
@@ -84,6 +84,7 @@ switch($action){
 
         // Si no ha superado el límite establecido para el equipo
         if($countUsuariohasarticulo <= $articulos_max){
+
             // Se crea registro
             $idUsuarioHasArticulo = $DaoUsuarioHasArticulo->add($UsuarioHasArticulo);
 
@@ -91,7 +92,7 @@ switch($action){
             if(is_numeric($idUsuarioHasArticulo)){
                 echo json_encode(array('status' => true, 'msg' => 'Se agrego correctamente tu registro', 'class'=>'success'));
             } else {
-                echo json_encode(array('status' => false, 'msg' => 'Error', 'class'=>'warning'));
+                echo json_encode(array('status' => false, 'msg' => 'Error 1', 'class'=>'warning'));
             }
 
         } else {
@@ -100,14 +101,15 @@ switch($action){
         }
 
       } else {
+
             // Si es un nuevo registro
             $idUsuarioHasArticulo = $DaoUsuarioHasArticulo->add($UsuarioHasArticulo);
-
+    
             // Si la inserción fue correcta
             if(is_numeric($idUsuarioHasArticulo)){
                 echo json_encode(array('status' => true, 'msg' => 'Se agrego correctamente tu registro', 'class'=>'success'));
             } else {
-                echo json_encode(array('status' => false, 'msg' => 'Error', 'class'=>'warning'));
+                echo json_encode(array('status' => false, 'msg' => 'Error 2', 'class'=>'warning'));
             }
       }
     

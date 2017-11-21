@@ -39,7 +39,6 @@ class DaoArticulo extends base{
           }
     }
 
-
     public function delete(Articulo $x){
         $query=sprintf("DELETE FROM ".$this->tableName." WHERE idarticulo=%s",
         $this->GetSQLValueString($x->getIdarticulo(), "int"));
@@ -51,9 +50,8 @@ class DaoArticulo extends base{
         }
     }
 
-
-    public function getById($Id){
-        $query="SELECT * FROM ".$this->tableName." WHERE idarticulo= ".$Id;
+    public function getById($idarticulo){
+        $query="SELECT * FROM ".$this->tableName." WHERE idarticulo=$idarticulo";
         $Result1=$this->_cnn->query($query);
         if(!$Result1){
             throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
@@ -64,6 +62,7 @@ class DaoArticulo extends base{
 
     public function getAllByUserId($idusuario){
         $query="SELECT * FROM ".$this->tableName." as a INNER JOIN usuario_has_articulo as ua ON ua.articulo_idarticulo = a.idarticulo WHERE ua.usuario_idusuario = $idusuario";
+
         $resultSet = $this->advancedQuery($query);
         return $resultSet;
     }
@@ -90,8 +89,6 @@ class DaoArticulo extends base{
             return $this->createObject($Result1->fetch_assoc());
         }
     }
-
-    
 
     public function getAllByPriceRange(Articulo $x){
         $query=sprintf("SELECT * FROM ".$this->tableName." WHERE precio_min>=%s AND precio_max<=%s",

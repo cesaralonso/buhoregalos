@@ -12,32 +12,50 @@ class DaoUsuario extends base{
 
     public $tableName="usuario";
 
+    public function add(Usuario $x) {
 
-    public function add(Usuario $x){
-          $query=sprintf("INSERT INTO ".$this->tableName." (email, password, nombres, avatar, rol_idrol, estatus) VALUES (%s ,%s, %s, %s, %s, %s)",
-          $this->GetSQLValueString($x->getEmail(), "text"),
-          $this->GetSQLValueString($x->getPassword(), "text"),
-          $this->GetSQLValueString($x->getNombres(), "text"),
-          $this->GetSQLValueString($x->getAvatar(), "text"),
-          $this->GetSQLValueString($x->getRolIdrol(), "text"),
-          $this->GetSQLValueString($x->getEstatus(), "text"));
-          $Result1=$this->_cnn->query($query);
+        $existLeaderByEmail = $this->existLeaderByEmail($x);
+        
+        if($existLeaderByEmail) {
+            return false;
+        } else {
+            $query=sprintf("INSERT INTO ".$this->tableName." (email, password, nombres, avatar, rol_idrol, estatus) VALUES (%s ,%s, %s, %s, %s, %s)",
+            $this->GetSQLValueString($x->getEmail(), "text"),
+            $this->GetSQLValueString($x->getPassword(), "text"),
+            $this->GetSQLValueString($x->getNombres(), "text"),
+            $this->GetSQLValueString($x->getAvatar(), "text"),
+            $this->GetSQLValueString($x->getRolIdrol(), "text"),
+            $this->GetSQLValueString($x->getEstatus(), "text"));
+            $Result1=$this->_cnn->query($query);
 
-        if(!$Result1) {
+            if(!$Result1) {
                 return false;
-        }else{
-               return $this->_cnn->insert_id;
+            } else {
+                return $this->_cnn->insert_id;
+            }
         }
     }
 
-    public function getAll(){
+    public function existLeaderByEmail(Usuario $x){
+        // $query="SELECT 1 FROM $this->tableName WHERE email = '$x->email' AND rol_idrol = '$x->rol_idrol'";
+        $query="SELECT 1 FROM $this->tableName WHERE email = '$x->email' AND rol_idrol = 'LIDER'";
+        $Result=$this->_cnn->query($query);
+
+        if($Result->num_rows >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getAll() {
         $query = "SELECT u.idusuario, u.email, u.nombres, u.apellidos, u.avatar, u.rol_idrol, u.estatus, u.participa  FROM ".$this->tableName." as u ORDER BY nombres";
         $resultSet = $this->advancedQuery($query);
         return $resultSet;
     }
 
-    public function getParticipandoByIdequipo($idequipo){
-        $query = "SELECT * FROM ".$this->tableName." as u INNER JOIN usuario_has_equipo as ue ON ue.usuario_idusuario = u.idusuario  WHERE ue.equipo_idequipo = $idequipo AND u.participa = 0 ORDER BY u.nombres";
+    public function getNoParticipandoByIdequipo($idequipo) {
+        $query = "SELECT * FROM ".$this->tableName." as u INNER JOIN usuario_has_equipo as ue ON ue.usuario_idusuario = u.idusuario  WHERE ue.equipo_idequipo = $idequipo AND ue.estatus_encuesta != 'PARTICIPA' ORDER BY u.nombres";
         $Result1=$this->_cnn->query($query);
         if(!$Result1) {
               throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
@@ -46,8 +64,8 @@ class DaoUsuario extends base{
         }
     }
 
-    public function getAllByIdequipo($idequipo){
-        $query = "SELECT u.idusuario, u.email, u.nombres, u.apellidos, u.avatar, u.rol_idrol, u.estatus, u.participa FROM ".$this->tableName." as u INNER JOIN usuario_has_equipo as ue ON ue.usuario_idusuario = u.idusuario  WHERE ue.equipo_idequipo = $idequipo ORDER BY u.nombres";
+    public function getParticipandoByIdequipo($idequipo) {
+        $query = "SELECT * FROM ".$this->tableName." as u INNER JOIN usuario_has_equipo as ue ON ue.usuario_idusuario = u.idusuario  WHERE ue.equipo_idequipo = $idequipo AND ue.estatus_encuesta = 'PARTICIPA' ORDER BY u.nombres";
         $Result1=$this->_cnn->query($query);
         if(!$Result1) {
               throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
@@ -56,13 +74,40 @@ class DaoUsuario extends base{
         }
     }
 
-    public function setIntercambioEquipo($idequipo){
+    public function getParticipandoAndNoParticipandoByIdequipo($idequipo) {
+        $query = "SELECT * FROM ".$this->tableName." as u INNER JOIN usuario_has_equipo as ue ON ue.usuario_idusuario = u.idusuario  WHERE ue.equipo_idequipo = $idequipo  ORDER BY u.nombres";
+        $Result1=$this->_cnn->query($query);
+        if(!$Result1) {
+              throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
+        }else{
+          return $this->advancedQueryByObjetc($query);
+        }
+    }
+
+    public function getAllByIdequipo($idequipo) {
+        $query = "SELECT u.idusuario, u.email, u.nombres, u.apellidos, u.avatar, u.rol_idrol, u.estatus FROM ".$this->tableName." as u INNER JOIN usuario_has_equipo as ue ON ue.usuario_idusuario = u.idusuario WHERE ue.equipo_idequipo = $idequipo ORDER BY u.nombres";
+        $Result1=$this->_cnn->query($query);
+        if (!$Result1) {
+              throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
+        } else {
+          return $this->advancedQueryByObjetc($query);
+          // return json_encode($this->advancedQuery($query));
+          
+        }
+    }
+
+    public function getParticipaByIdusuarioIdequipo($idusuario, $idequipo) {
+        $query="SELECT COUNT(*) as count FROM usuario_has_equipo as ue  WHERE ue.usuario_idusuario = $idusuario AND ue.equipo_idequipo = $idequipo AND ue.estatus_encuesta = 'PARTICIPA'";
+        $resultSet = $this->advancedQuery($query);
+        return $resultSet;
+    }
+
+    public function setIntercambioEquipo($idequipo) {
 
         $query = "SELECT u.*, ue.* FROM ".$this->tableName." as u INNER JOIN usuario_has_equipo as ue ON ue.usuario_idusuario = u.idusuario
-                  WHERE u.participa = 1 AND ue.equipo_idequipo = $idequipo ORDER BY u.nombres ASC";
+                  WHERE ue.estatus_encuesta = 'PARTICIPA' AND ue.equipo_idequipo = $idequipo ORDER BY u.nombres ASC";
         $Result1=$this->_cnn->query($query);
         $usuarios = $this->advancedQueryByObjetc($query);
-
 
         $organizados = array();
 
@@ -85,13 +130,12 @@ class DaoUsuario extends base{
                 $UsuarioHasEquipo_da = $DaoUsuarioHasEquipo->getByIdusuarioIdequipo($usuario_da->idusuario, $idequipo);
 
 
-                // Revisar si en intercambiando este idusuario_has_equipo ya está registrado para dar, si no lo está entonces cres un registro
+                // Revisar si en intercambiando este idusuario_has_equipo ya está registrado para dar, si no lo está entonces crea un registro
                 $usuarioYaIntercambiando = $DaoIntercambiando->getByIdusuarioHasEquipoDa($UsuarioHasEquipo_da->idusuario_has_equipo);
-
 
                 if( !$usuarioYaIntercambiando ){
 
-                    // Si no está intercambiando se busca a quien intercambiara $usuario->idusuario, a un usuario que no este registrado en Intercambiando como usuario que recibe
+                    // Si no está intercambiando se busca a quien intercambiará $usuario->idusuario, a un usuario que no este registrado en Intercambiando como usuario que recibe
                     // Se barre de nuevo toda la lista de usuarios buscando usuario no recibiendo
 
 
@@ -162,7 +206,7 @@ class DaoUsuario extends base{
 
         if(!$Result1) {
               throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
-        }else{
+        } else {
             if( count($organizados)>0 ){
                 return array("data"=>$organizados,"msg"=>"Se han organizado correctamente usuarios de este equipo");
             } else {
@@ -179,7 +223,7 @@ class DaoUsuario extends base{
 
     public function getAccess(Usuario $x){
 
-        $query=sprintf("SELECT COUNT(*) as count, idusuario, rol_idrol as idrol FROM ".$this->tableName." WHERE email = %s AND password = %s",
+        $query=sprintf("SELECT COUNT(*) as count, idusuario, rol_idrol as idrol FROM ".$this->tableName." u WHERE email = %s AND password = %s",
         $this->GetSQLValueString($x->getEmail(), "text"),
         $this->GetSQLValueString($x->getPassword(), "text"));
 
@@ -187,6 +231,7 @@ class DaoUsuario extends base{
         return $resultSet;
     }
 
+    /*
     public function setParticipacion(Usuario $x){
 
         $query=sprintf("UPDATE ".$this->tableName." SET participa=1 WHERE email = %s AND password = %s",
@@ -214,6 +259,7 @@ class DaoUsuario extends base{
                 return $x->getIdusuario();
         }
     }
+    */
 
     public function update(Usuario $x){
           $query=sprintf("UPDATE ".$this->tableName." SET email=%s, nombres=%s, avatar=%s, rol_idrol=%s, estatus=%s  WHERE idusuario = %s",
@@ -252,7 +298,6 @@ class DaoUsuario extends base{
             }
     }
 
-
     public function getDataById($Id){
         $query="SELECT * FROM ".$this->tableName." as u WHERE idusuario= ".$Id;
             $Result1=$this->_cnn->query($query);
@@ -290,7 +335,7 @@ class DaoUsuario extends base{
         $x->setAvatar($row['avatar']);
         $x->setRolIdrol($row['rol_idrol']);
         $x->setEstatus($row['estatus']);
-        $x->setParticipa($row['participa']);
+        // $x->setParticipa($row['participa']);
         return $x;
     }
 

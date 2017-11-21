@@ -7,16 +7,16 @@ class DaoUsuarioHasArticulo extends base{
     public $tableName="usuario_has_articulo";
 
     public function add(UsuarioHasArticulo $x){
-          $query=sprintf("INSERT INTO ".$this->tableName." (usuario_idusuario, articulo_idarticulo, promedio) VALUES (%s, %s, %s)",
-          $this->GetSQLValueString($x->getUsuarioIdusuario(), "int"),
-          $this->GetSQLValueString($x->getArticuloIdarticulo(), "int"),
-          $this->GetSQLValueString($x->getPromedio(), "int"));
-          $Result1=$this->_cnn->query($query);
-            if(!$Result1) {
-                 return false;
-            }else{
-               return $this->_cnn->insert_id;
-          }
+        $query=sprintf("INSERT INTO ".$this->tableName." (usuario_idusuario, articulo_idarticulo, promedio) VALUES (%s, %s, %s)",
+        $this->GetSQLValueString($x->getUsuarioIdusuario(), "int"),
+        $this->GetSQLValueString($x->getArticuloIdarticulo(), "int"),
+        $this->GetSQLValueString($x->getPromedio(), "int"));
+        $Result1=$this->_cnn->query($query);
+        if(!$Result1) {
+            return false;
+        }else{
+            return $this->_cnn->insert_id;
+        }
     }
 
     public function getAll(){

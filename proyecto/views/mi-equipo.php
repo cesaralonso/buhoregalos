@@ -62,7 +62,7 @@ if(!$islogged && !$isadmin){
                 <div class="col-md-8">
                     <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input class="form-control"  type="number" step="10" i id="precio_min" name="precio_min" placeholder="Ingrese su precio mínimo" data-toggle="tooltip" data-placement="top" title="Ingrese su precio mínimo" max="20000"  value="{{precio_min}}">
+                        <input class="form-control"  type="number" step="10" i id="precio_min" name="precio_min" placeholder="Múltiplos de 100" data-toggle="tooltip" data-placement="top" title="Ingrese su precio mínimo" max="20000"  value="{{precio_min}}">
                         <span class="input-group-addon">.00 M.N.</span>
 
                     </div>
@@ -73,7 +73,7 @@ if(!$islogged && !$isadmin){
                 <div class="col-md-8">
                     <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input class="form-control"  type="number" step="10" i id="precio_max" name="precio_max" placeholder="Ingrese su precio máximo" data-toggle="tooltip" data-placement="top" title="Ingrese su precio máximo" max="20000"  value="{{precio_max}}">
+                        <input class="form-control"  type="number" step="10" i id="precio_max" name="precio_max" placeholder="Múltiplos de 100" data-toggle="tooltip" data-placement="top" title="Ingrese su precio máximo" max="20000"  value="{{precio_max}}">
                         <span class="input-group-addon">.00 M.N.</span>
                     </div>
                 </div>

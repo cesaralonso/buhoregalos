@@ -99,6 +99,35 @@ if(!$islogged && !$isadmin){
         </div>
     </div>
 
+    <!-- Modal Resetea  -->
+    <div class="modal fade" id="reseteaSorteo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Vuelve a comenzar sorteo al equipo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form id="formReseteaEquipo">
+                                <div class="form-group row">
+                                    <div class="col-md-8 offset-md-2">
+                                        <p class="text-center">La siguiente acción reseteará toda la organización del sorteo, debes tener cuidado de hacerlo pues no podrán revertirse los cambios.</p>
+                                        <input type="hidden" name="resetea_idequipo" id="resetea_idequipo">
+                                        <button type="submit" class="btn btn-warning"><i class="fa fa-eraser"></i> Resetear</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- CURRENT EVENTS TEMPLATE -->
     <script id="equipo-template" type="x-text/handlebars">
         <div class="card card-block text-xs-center">
@@ -115,6 +144,7 @@ if(!$islogged && !$isadmin){
               <a href="integrantes/{{idequipo}}" class="btn btn-primary"><i class="fa fa-users"></i></a>
               <a href="#" data-idequipo="{{idequipo}}" data-nombres="{{nombre}}" class="btn btn-danger" data-toggle="modal" data-target="#eliminacionEquipo"><i class="fa fa-trash"></i></a>
               <button type="button" data-idequipo="{{idequipo}}" data-nombres="{{nombre}}" class="btn btn-warning" data-toggle="modal" data-target="#finalizaSorteo"><i class="fa fa-flag-checkered"></i> Finalizar Sorteo </button>
+              <button type="button" data-idequipo="{{idequipo}}" data-nombres="{{nombre}}" class="btn btn-danger" data-toggle="modal" data-target="#reseteaSorteo"><i class="fa fa-eraser"></i> Resetar Sorteo </button>
             </div>
           {{/each}}
 
@@ -130,6 +160,44 @@ if(!$islogged && !$isadmin){
                 '_method': 'allForMe'
             };
             equipo._set(params);
+
+
+            // Resetea equipo con confirmacion
+            $('#reseteaSorteo').on('shown.bs.modal', function (event) {
+
+                var modal = $(this)
+
+                $(document).off('submit').on('submit', '#formReseteaEquipo', function(e){
+                    e.preventDefault();
+
+                    // Resetea, Resetea y envía  email a lista de integrantes
+                    var usuario = new Usuario();
+                    var params = {
+                    '_idequipo'   : $("#resetea_idequipo").val(),
+                    '_method'     : 'reseteaIntercambiando'
+                    }
+                    console.log("params", params);
+                    usuario._set(params);
+
+                    setTimeout(function() {
+                        modal.modal('hide');
+                    }, 750);
+
+                });
+            });
+
+            // Resetea equipo con confirmacion
+            $('#reseteaSorteo').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                var equipo_idequipo = button[0].dataset.idequipo
+                var equipo_nombres = button[0].dataset.nombres
+
+                var modal = $(this)
+
+                modal.find('.modal-title').text("Resetear sorteo a equipo " + equipo_nombres)
+                modal.find('.modal-body input#resetea_idequipo').val(equipo_idequipo)
+
+            });
 
 
             // Organiza equipo con confirmacion

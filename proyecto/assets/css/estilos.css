@@ -357,7 +357,6 @@ SECCION PIE DE PAGINA
       -ms-flex-pack: center;
           justify-content: center;
   list-style: none;
-  margin: 0;
   padding: 0; }
 
 .piedepagina .redes-sociales a {
@@ -639,3 +638,7 @@ EMPIEZAN LAS MEDIAS QUERIES
     background-size: cover; } }
 
 /*# sourceMappingURL=estilos.css.map */
+
+.link-white a {
+  color: #fff;
+}

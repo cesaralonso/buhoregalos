@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2 class="m-b-2">Formulario de contacto</h2>
-                    <form action="#">
+                    <form id="form-contact-me">
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label">Nombre</label>
 
@@ -53,9 +53,8 @@
                     </form>
                 </div>
                 <div class="col-md-4">
-                    <h3>Detalles de contacto</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque laborum commodi suscipit vitae eius perferendis consequuntur? Modi nihil aliquam, quas deserunt vitae atque suscipit ratione rerum eveniet. Qui, adipisci ad.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque laborum commodi suscipit vitae eius perferendis consequuntur? Modi nihil aliquam, quas deserunt vitae atque suscipit ratione rerum eveniet. Qui, adipisci ad.</p>
+                    <h3>¡Contáctanos!</h3>
+                    <p>Contacta con Búho Intercambios para promociones, publicidad o sugerencias.</p>
                 </div>
             </div>
         </div>
@@ -63,3 +62,38 @@
 
 
 
+<script>
+
+$(document).ready(function(){
+
+  $("#form-contact-me").submit(function(e){
+      e.preventDefault();
+
+      var $form = $(this);
+      var $inputs = $form.find("input, select, button, textarea");
+      var serializedData = $form.serialize();
+      $inputs.prop("disabled", true);
+      request = $.ajax({
+          url: "./server/contactme-email-send.php",
+          type: "post",
+          data: serializedData
+      })
+      .done(function (response, textStatus, jqXHR){
+          response = JSON.parse(response);
+          alert(response.msg);
+      })
+      .fail(function (jqXHR, textStatus, errorThrown){
+          console.error(
+              "The following error occurred: "+
+              textStatus, errorThrown
+          );
+      })
+      .always(function () {
+          $inputs.prop("disabled", false);
+      });
+    });
+
+  
+  });
+
+</script>

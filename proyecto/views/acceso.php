@@ -43,6 +43,7 @@
     <main class="py-1">
         <div class="container">
             <div class="row">
+                <?php include ("views/includes/articles-amazon.php"); ?>
             </div>
         </div>
     </main>

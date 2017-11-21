@@ -7,17 +7,31 @@ class DaoUsuarioHasEquipo extends base{
 
     public $tableName="usuario_has_equipo";
 
-    public function add(UsuarioHasEquipo $x){
-          $query=sprintf("INSERT INTO ".$this->tableName." (usuario_idusuario, equipo_idequipo, estatus_encuesta) VALUES (%s ,%s, %s)",
-          $this->GetSQLValueString($x->getUsuarioIdusuario(), "int"),
-          $this->GetSQLValueString($x->getEquipoIdequipo(), "int"),
-          $this->GetSQLValueString($x->getEstatusEncuesta(), "text"));
-          $Result1=$this->_cnn->query($query);
-            if(!$Result1) {
-                 return false;
-            }else{
-               return $this->_cnn->insert_id;
-          }
+    public function add(UsuarioHasEquipo $x) {
+        $query=sprintf("INSERT INTO ".$this->tableName." (usuario_idusuario, equipo_idequipo, estatus_encuesta) VALUES (%s ,%s, %s)",
+        $this->GetSQLValueString($x->getUsuarioIdusuario(), "int"),
+        $this->GetSQLValueString($x->getEquipoIdequipo(), "int"),
+        $this->GetSQLValueString($x->getEstatusEncuesta(), "text"));
+        $Result1=$this->_cnn->query($query);
+
+        if(!$Result1) {
+            return false;
+        } else {
+            return $this->_cnn->insert_id;
+        }
+    }
+    
+    public function validateEmailDontExistInTeam($actualEmail, $idequipo) {
+        $query=sprintf("SELECT 1 FROM `usuario_has_equipo` ue INNER JOIN usuario u ON u.idusuario = ue.usuario_idusuario WHERE u.email = '%s' AND ue.equipo_idequipo = '%s'",
+        $actualEmail,
+        $idequipo);
+        $Result=$this->_cnn->query($query);
+
+        if($Result->num_rows >= 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public function getAll(){
@@ -39,7 +53,6 @@ class DaoUsuarioHasEquipo extends base{
                   return $x->getUsuarioIdusuario();
           }
     }
-
 
     public function delete(UsuarioHasEquipo $x){
         $query=sprintf("DELETE FROM ".$this->tableName." WHERE idusuario_has_equipo=%s",
@@ -86,6 +99,17 @@ class DaoUsuarioHasEquipo extends base{
         }
     }
 
+    public function getByIdusuario($idusuario){
+        $query=sprintf("SELECT * FROM ".$this->tableName." WHERE usuario_idusuario = %s",
+        $idusuario);
+        $Result1=$this->_cnn->query($query);
+        if(!$Result1){
+            throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
+        }else{
+            return $this->createObject($Result1->fetch_assoc());
+        }
+    }
+
     public function getByIdusuarioIdequipo($idusuario, $idequipo){
         $query=sprintf("SELECT * FROM ".$this->tableName." WHERE usuario_idusuario = %s AND equipo_idequipo = %s",
         $this->GetSQLValueString($idusuario, "int"),
@@ -95,6 +119,36 @@ class DaoUsuarioHasEquipo extends base{
             throw new Exception("Error al obtener: (" . $this->_cnn->errno . ") " . $this->_cnn->error);
         }else{
             return $this->createObject($Result1->fetch_assoc());
+        }
+    }
+
+    # Participa usuario al logearse o mediante acción de lider en integrantes
+    public function setParticipacion(UsuarioHasEquipo $x){
+
+        $query=sprintf("UPDATE ".$this->tableName." SET estatus_encuesta='PARTICIPA' WHERE usuario_idusuario = %s AND equipo_idequipo = %s",
+        $this->GetSQLValueString($x->getUsuarioIdusuario(), "int"),
+        $this->GetSQLValueString($x->getEquipoIdequipo(), "int"));
+
+        $Result1=$this->_cnn->query($query);
+        if(!$Result1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    # No Participa usuario
+    public function setNoParticipacion(UsuarioHasEquipo $x){
+
+        $query=sprintf("UPDATE ".$this->tableName." SET estatus_encuesta='NOPARTICIPA' WHERE usuario_idusuario = %s AND equipo_idequipo = %s",
+        $this->GetSQLValueString($x->getUsuarioIdusuario(), "int"),
+        $this->GetSQLValueString($x->getEquipoIdequipo(), "int"));
+
+        $Result1=$this->_cnn->query($query);
+        if(!$Result1) {
+            return false;
+        } else {
+            return true;
         }
     }
 

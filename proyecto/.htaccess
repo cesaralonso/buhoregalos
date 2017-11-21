@@ -20,7 +20,7 @@ Header set Cache-Control "max-age=172800, public, must-revalidate"
 Header set Cache-Control "max-age=7200, must-revalidate"
 </FilesMatch>
 
-#ErrorDocument 404 http://www.buhoregalos.com?error=404
+ErrorDocument 404 http://www.buhointercambios.club?error=404
 
 
 #AddDefaultCharset ISO-8859-1
@@ -28,7 +28,7 @@ Header set Cache-Control "max-age=7200, must-revalidate"
 
 <IfModule mod_rewrite.c>
 RewriteEngine on
-#RewriteBase /buhoregalos/proyecto/
+#RewriteBase /buhointercambios/proyecto/
 RewriteBase /
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
@@ -38,4 +38,5 @@ RewriteRule ^mi-equipo/([^/]+)$ index.php?view=mi-equipo&id=$1
 RewriteRule ^mi-intercambio/([^/]+)$ index.php?view=mi-intercambio&id=$1
 RewriteRule ^integrantes/([^/]+)$ index.php?view=integrantes&id=$1
 RewriteRule ^sorteo-equipo/([^/]+)$ index.php?view=sorteo-equipo&id=$1
+RewriteRule ^blog/([^/]+)$ index.php?view=blog&articulo=$1
 </IfModule>
